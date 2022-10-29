@@ -155,6 +155,81 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/29/%E9%81%A5%E6%84%9F%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BB%BC%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Foufor Past">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Foufor Past">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/29/%E9%81%A5%E6%84%9F%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BB%BC%E8%BF%B0/" class="post-title-link" itemprop="url">遥感多模态综述</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-29 21:11:41" itemprop="dateCreated datePublished" datetime="2022-10-29T21:11:41+08:00">2022-10-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>From Single- to Multi-modal Remote Sensing Imagery Interpretation: A Survey and Taxonomy </p>
+<p>模态是信息的来源或形式。通过各种模态信息，人类可以从多个角度感知世界。同时，遥感观测是多模态的。我们通过全色、激光雷达和其他模态传感器宏观地观察世界。多模态遥感观测已成为一个活跃的领域，它有利于城市规划、监测和其他应用。尽管在这一领域取得了许多进展，但仍然没有一项全面的评估，能够为系统的概览提供统一的评价。因此，在本文中，我们首先强调了单模态和多模态遥感影像判读之间的关键差异，然后利用这些差异来指导我们对级联结构中多模态遥感影像判读的研究。最后，对未来可能的研究方向进行了探讨和展望。我们希望这项调查将成为研究人员回顾最新发展和开展多模式研究的起点。<br></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/10/29/%E9%81%A5%E6%84%9F%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BB%BC%E8%BF%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/31/KMP%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -178,10 +253,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-12-31 15:30:12 / 修改时间：18:49:16" itemprop="dateCreated datePublished" datetime="2021-12-31T15:30:12+08:00">2021-12-31</time>
+              <time title="创建时间：2021-12-31 15:30:12" itemprop="dateCreated datePublished" datetime="2021-12-31T15:30:12+08:00">2021-12-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-27 22:49:01" itemprop="dateModified" datetime="2022-10-27T22:49:01+08:00">2022-10-27</time>
+              </span>
 
           
 
@@ -194,32 +275,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>KMP算法可以高效地在一个文本串T（长度为n）中查找模式串P（长度为m）的出现位置。</p>
-<p>首先看一下蛮力匹配的匹配过程。</p>
-<p><img src="/2021/12/31/KMP%E7%AE%97%E6%B3%95/蛮力匹配.png" alt="屏幕截图 2021-12-31 143350"></p>
-<p>蛮力匹配中，如果P在位置j和T在位置i失配，P会回退到位置0，T的位置＋1，然后二者重新开始比对。这种算法的平均复杂度是O(m*n)。</p>
-<p>可以看到，实际上P[5]和T[5]失配后，实际上可以直接从P[2]和T[5]开始比对，这是因为第一次比对的过程中，我们得到了P[0:4]==T[0:4]的信息，因此第二次比对实际上是P[0:3]和P[1:4]之间的比对，第三次比对是P[0:2]和P[2:4]之间的比对，如果我们可以预处理P字符串，得到P[0:3]!=P[1:4]，P[0:2]!=P[2:4]，P[0:1]==P[3:4]的信息，我们就可以跳过第二次和第三次比对，直接从P[2]和T[5]比对开始。如此以来我们不需要回退T的指针，可以将复杂度压缩到O(n)。</p>
-<p>那么我们怎么从P[5]和T[5]失配得到下一次应该比对的是P[2]和T[5]呢，实际上，我们只需要找到P[0:4]的最大长度的相匹配的真前缀和真后缀即可。即如果P在位置j失配，下次比对的位置应该为</p>
-<script type="math/tex; mode=display">
-next[j]=max(\{0\leq t<j|P[0,t)==P[j-t,j)\})</script><p>以bacbab为例</p>
-<ul>
-<li>j=0，next[0] = -1（假想P[-1]为通配）</li>
-<li>j=1, b没有真前缀和真后缀，因此next[1]=0</li>
-<li>j=2, ba的真前缀为{b}，真后缀为{a}，没有共有元素，因此next[2]=0</li>
-<li>j=3，bac的真前缀为{b,ba}，真后缀为{ac,c}，没有共有元素，因此next[3]=0</li>
-<li>j=4,  bacb的真前缀为{b,ba,bac}，真后缀为{acb,cb,b}，二者最大长度的共有元素为b，长度为1，因此next[4]=1</li>
-<li>j=5，bacba的真前缀为{b,ba,bac,bacb}，真后缀为{acba,cba,ba,a}，二者最大长度的共有元素为ba,因此next[5]=2</li>
-</ul>
-<p>下面用代码计算next表</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">buildNext</span> <span class="params">(string&amp; P)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = P.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> t = <span class="number">-1</span>;</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">next</span><span class="params">(m, <span class="number">-1</span>)</span></span>;</span><br><span class="line">    <span class="keyword">while</span>(j &lt; m - <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(t == <span class="number">-1</span> || P[j] == P[t])&#123; <span class="comment">// 一直匹配的情况</span></span><br><span class="line">            ++j;</span><br><span class="line">            ++t;</span><br><span class="line">            next[j] = t;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;   <span class="comment">// 失配的情况</span></span><br><span class="line">            t = next[t];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>应用next表进行字符串的匹配</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(string P, string T)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = P.<span class="built_in">size</span>(), n = T.<span class="built_in">size</span>();</span><br><span class="line">    vector&lt;<span class="keyword">int</span>&gt; next = <span class="built_in">buildNext</span>(P);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">-1</span>||T[i] == P[j])&#123;</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">            <span class="keyword">if</span>(j == m)&#123;</span><br><span class="line">                <span class="keyword">return</span> i - m;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>时间复杂度：设<script type="math/tex">k=2i-j</script>，每次while循环如果满足$j == -1||T[i] == P[j]$则k严格增加1，如果不满足由于$j=next[j]$，即j至少会增加1，则k至少会减小1。所以while循环不会超过k次。由于$k\leq2<em>i<em>{max}-j</em>{min}$，所以$k\leq2</em>n+1$，所以时间复杂度为O(2*n+1)，即O(n)</p>
-<p>引申一下，其实next表计算的是字符串P的<strong>真前缀</strong>的所有真前缀和真后缀中相同子串的最大长度，也就是没有计算P自身的所有真前缀和真后缀中相同子串的最大长度，如果是想计算后者，一种方法是在P后追加一个字符，计算这个新的字符串的next表，取next[1:end]即可；另一种方法是修改计算next的逻辑，代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">getMaxPreSuf</span> <span class="params">(string&amp; P)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = P.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">len</span><span class="params">(m, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">while</span>(j &lt;= m - <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(P[j] == P[t])&#123;</span><br><span class="line">            t++;</span><br><span class="line">            len[j] = t;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (t != <span class="number">0</span>)&#123;</span><br><span class="line">            t = len[t - <span class="number">1</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>再引申一下，如何计算字符串P的所有前缀和字符串Q的所有后缀中相同子串的最长长度，实际上修改一下上面的getMaxPreSuf函数就行了。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMax</span> <span class="params">(string P, string Q)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = P.<span class="built_in">size</span>(), n = Q.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">int</span> start = m &gt; n? <span class="number">0</span>:n - m;</span><br><span class="line">    <span class="keyword">int</span> j = start + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">len</span><span class="params">(min(m, n), <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">while</span>(j &lt; n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(Q[j] == P[t])&#123;</span><br><span class="line">            t++;</span><br><span class="line">            len[j - start] = t;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (t != <span class="number">0</span>)&#123;</span><br><span class="line">            t = len[t - <span class="number">1</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> len.<span class="built_in">back</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+          <p>KMP算法简要介绍<br></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/31/KMP%E7%AE%97%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -365,14 +429,20 @@ next[j]=max(\{0\leq t<j|P[0,t)==P[j-t,j)\})</script><p>以bacbab为例</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
