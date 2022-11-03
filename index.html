@@ -178,8 +178,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-11-03 18:57:13" itemprop="dateCreated datePublished" datetime="2022-11-03T18:57:13+08:00">2022-11-03</time>
+              <time title="创建时间：2022-11-03 18:57:13 / 修改时间：18:59:14" itemprop="dateCreated datePublished" datetime="2022-11-03T18:57:13+08:00">2022-11-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -202,34 +203,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>n个球放入m个箱子$(m\geq1,n\geq1)$，问有多少种放法，可以根据球是否相同、箱子是否相同、是否允许空箱分成如下几类（对于不允许空箱的情况，应满足$m\leq n$）：</p>
-<h4 id="1-球相同，箱子相同，允许空箱"><a href="#1-球相同，箱子相同，允许空箱" class="headerlink" title="1. 球相同，箱子相同，允许空箱"></a>1. 球相同，箱子相同，允许空箱</h4><p>设$dp[i][j]$表示将i个球放入j个箱子在允许空箱的情况下的全部放法。则</p>
-<script type="math/tex; mode=display">
-dp[i][j]= \begin{cases}
-dp[i-j][j]+dp[i][j-1]&i\geq j\\
-dp[i][j-1]&i<j
-\end{cases}\\
-initial\;conditions:\\
-dp[k][1]=dp[1][l]=dp[0][l]=1,k\in[0,n],l\in[1,m]</script><p>$dp[i-j][j]$表示j个箱子不存在空箱的情况下的放法，$dp[i][j-1]$表示箱子存在空箱情况下的放法。</p>
-<h4 id="2-球相同，箱子相同，不允许空箱"><a href="#2-球相同，箱子相同，不允许空箱" class="headerlink" title="2. 球相同，箱子相同，不允许空箱"></a>2. 球相同，箱子相同，不允许空箱</h4><p>可以考虑这样一种放法：先从n个球中选取m个分别放入m个箱子中，再将余下个n-m球放入这m个箱子中。这种放法相当于1的条件下只有n-m个球的情况，因此答案即为$dp[n-m][m]$。</p>
-<h4 id="3-球相同，箱子不同，不允许空箱"><a href="#3-球相同，箱子不同，不允许空箱" class="headerlink" title="3. 球相同，箱子不同，不允许空箱"></a>3. 球相同，箱子不同，不允许空箱</h4><p>应用“插板法”。n个球之间有n-1个空隙，从中选取m-1个位置插入隔板。答案为</p>
-<script type="math/tex; mode=display">
-C_{n-1}^{m-1}</script><h4 id="4-球相同，箱子不同，允许空箱"><a href="#4-球相同，箱子不同，允许空箱" class="headerlink" title="4. 球相同，箱子不同，允许空箱"></a>4. 球相同，箱子不同，允许空箱</h4><p>可以考虑这样一种放法：先在m个箱子中每个放入一个球，再将n个球放入这m个箱子中，最后再将每个箱子中的球减少一个即可。这种放法相当于将m+n个球在不允许空箱的情况下放入了m个箱子中，因此答案即为</p>
-<script type="math/tex; mode=display">
-C_{m+n-1}^{m-1}</script><h4 id="5-球不同，箱子不同，允许空箱"><a href="#5-球不同，箱子不同，允许空箱" class="headerlink" title="5. 球不同，箱子不同，允许空箱"></a>5. 球不同，箱子不同，允许空箱</h4><p>每个球选择箱子，一个球有m中选择，n个球有$m^n$种选择</p>
-<h4 id="6-球不同，箱子相同，不允许空箱"><a href="#6-球不同，箱子相同，不允许空箱" class="headerlink" title="6. 球不同，箱子相同，不允许空箱"></a>6. 球不同，箱子相同，不允许空箱</h4><p>此即第二类斯特林数，$S_2(n,m)$。</p>
-<p>$S_2(n,m)$有如下两种推导方法：</p>
-<p>（a）动态规划</p>
-<p>考虑计算$S_2(i,j)$。</p>
-<p>$i=j或j=1$时，$S_2(i,j)=1$是显然的。</p>
-<p>$i&gt;j$时，$S_2(i,j)$可以分为两种情况，一种情况是第i个球单独一组，剩下i-1球分到j-1个箱子，一共$S_2(i-1,j-1)$种情况；另一种情况是i-1个球已经分到了j个箱子中，此时第i个球选择任意一个箱子放入都行，一共$jS_2(i-1,j)$种情况。</p>
-<p>所以$S_2(i,j)=S_2(i-1,j-1)+jS_2(i-1,j)$。</p>
-<p>（b）数学</p>
-<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/第二类斯特林数的展开式/16516893">第二类斯特林数的展开式_百度百科 (baidu.com)</a></p>
-<h4 id="7-球不同，箱子相同，允许空箱"><a href="#7-球不同，箱子相同，允许空箱" class="headerlink" title="7. 球不同，箱子相同，允许空箱"></a>7. 球不同，箱子相同，允许空箱</h4><p>分为m种情况讨论：分别将n个球放入1、2、3…m个箱子且不允许空箱，将这m中情况对应的放法相加即可。</p>
-<script type="math/tex; mode=display">
-\Sigma_{k=1}^m S_2(n,k)</script><h4 id="8-球不同，箱子不同，不允许空箱"><a href="#8-球不同，箱子不同，不允许空箱" class="headerlink" title="8. 球不同，箱子不同，不允许空箱"></a>8. 球不同，箱子不同，不允许空箱</h4><p>只需要在箱子相同的答案基础上乘以$m!$即可，即$S_2(n,m)\times m!$</p>
-
+          <p>n个球放入m个箱子$(m\geq1,n\geq1)$，问有多少种放法。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/11/03/n%E4%B8%AA%E7%90%83%E6%94%BE%E5%85%A5m%E4%B8%AA%E7%AE%B1%E5%AD%90%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

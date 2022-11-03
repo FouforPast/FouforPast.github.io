@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="n个球放入m个箱子$(m\geq1,n\geq1)$，问有多少种放法，可以根据球是否相同、箱子是否相同、是否允许空箱分成如下几类（对于不允许空箱的情况，应满足$m\leq n$）： 1. 球相同，箱子相同，允许空箱设$dp[i][j]$表示将i个球放入j个箱子在允许空箱的情况下的全部放法。则  dp[i][j]&#x3D; \begin{cases} dp[i-j][j]+dp[i][j-1]&amp;i\geq">
+  <meta name="description" content="n个球放入m个箱子$(m\geq1,n\geq1)$，问有多少种放法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="n个球放入m个箱子问题">
 <meta property="og:url" content="http://example.com/2022/11/03/n%E4%B8%AA%E7%90%83%E6%94%BE%E5%85%A5m%E4%B8%AA%E7%AE%B1%E5%AD%90%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Foufor Past">
-<meta property="og:description" content="n个球放入m个箱子$(m\geq1,n\geq1)$，问有多少种放法，可以根据球是否相同、箱子是否相同、是否允许空箱分成如下几类（对于不允许空箱的情况，应满足$m\leq n$）： 1. 球相同，箱子相同，允许空箱设$dp[i][j]$表示将i个球放入j个箱子在允许空箱的情况下的全部放法。则  dp[i][j]&#x3D; \begin{cases} dp[i-j][j]+dp[i][j-1]&amp;i\geq">
+<meta property="og:description" content="n个球放入m个箱子$(m\geq1,n\geq1)$，问有多少种放法。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-03T10:57:13.000Z">
-<meta property="article:modified_time" content="2022-11-03T10:57:13.848Z">
+<meta property="article:modified_time" content="2022-11-03T10:59:14.751Z">
 <meta property="article:author" content="Foufor Past">
 <meta property="article:tag" content="排列组合">
 <meta property="article:tag" content="数学">
@@ -184,8 +184,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-11-03 18:57:13" itemprop="dateCreated datePublished" datetime="2022-11-03T18:57:13+08:00">2022-11-03</time>
+              <time title="创建时间：2022-11-03 18:57:13 / 修改时间：18:59:14" itemprop="dateCreated datePublished" datetime="2022-11-03T18:57:13+08:00">2022-11-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -208,7 +209,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>n个球放入m个箱子$(m\geq1,n\geq1)$，问有多少种放法，可以根据球是否相同、箱子是否相同、是否允许空箱分成如下几类（对于不允许空箱的情况，应满足$m\leq n$）：</p>
+        <p>n个球放入m个箱子$(m\geq1,n\geq1)$，问有多少种放法。</p>
+<span id="more"></span>
+<p>可以根据球是否相同、箱子是否相同、是否允许空箱分成如下几类（对于不允许空箱的情况，应满足$m\leq n$）：</p>
 <h4 id="1-球相同，箱子相同，允许空箱"><a href="#1-球相同，箱子相同，允许空箱" class="headerlink" title="1. 球相同，箱子相同，允许空箱"></a>1. 球相同，箱子相同，允许空箱</h4><p>设$dp[i][j]$表示将i个球放入j个箱子在允许空箱的情况下的全部放法。则</p>
 <script type="math/tex; mode=display">
 dp[i][j]= \begin{cases}
