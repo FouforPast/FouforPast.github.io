@@ -20,28 +20,34 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Foufor Past">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="n个球放入m个箱子$(m\geq1,n\geq1)$，问有多少种放法，可以根据球是否相同、箱子是否相同、是否允许空箱分成如下几类（对于不允许空箱的情况，应满足$m\leq n$）： 1. 球相同，箱子相同，允许空箱设$dp[i][j]$表示将i个球放入j个箱子在允许空箱的情况下的全部放法。则  dp[i][j]&#x3D; \begin{cases} dp[i-j][j]+dp[i][j-1]&amp;i\geq">
+<meta property="og:type" content="article">
+<meta property="og:title" content="n个球放入m个箱子问题">
+<meta property="og:url" content="http://example.com/2022/11/03/n%E4%B8%AA%E7%90%83%E6%94%BE%E5%85%A5m%E4%B8%AA%E7%AE%B1%E5%AD%90%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Foufor Past">
+<meta property="og:description" content="n个球放入m个箱子$(m\geq1,n\geq1)$，问有多少种放法，可以根据球是否相同、箱子是否相同、是否允许空箱分成如下几类（对于不允许空箱的情况，应满足$m\leq n$）： 1. 球相同，箱子相同，允许空箱设$dp[i][j]$表示将i个球放入j个箱子在允许空箱的情况下的全部放法。则  dp[i][j]&#x3D; \begin{cases} dp[i-j][j]+dp[i][j-1]&amp;i\geq">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-03T10:57:13.000Z">
+<meta property="article:modified_time" content="2022-11-03T10:57:13.848Z">
 <meta property="article:author" content="Foufor Past">
+<meta property="article:tag" content="排列组合">
+<meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2022/11/03/n%E4%B8%AA%E7%90%83%E6%94%BE%E5%85%A5m%E4%B8%AA%E7%AE%B1%E5%AD%90%E9%97%AE%E9%A2%98/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Foufor Past</title>
+  <title>n个球放入m个箱子问题 | Foufor Past</title>
   
 
 
@@ -149,9 +155,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -167,10 +174,9 @@
       <meta itemprop="name" content="Foufor Past">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/03/n%E4%B8%AA%E7%90%83%E6%94%BE%E5%85%A5m%E4%B8%AA%E7%AE%B1%E5%AD%90%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">n个球放入m个箱子问题</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          n个球放入m个箱子问题
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -202,7 +208,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>n个球放入m个箱子$(m\geq1,n\geq1)$，问有多少种放法，可以根据球是否相同、箱子是否相同、是否允许空箱分成如下几类（对于不允许空箱的情况，应满足$m\leq n$）：</p>
+        <p>n个球放入m个箱子$(m\geq1,n\geq1)$，问有多少种放法，可以根据球是否相同、箱子是否相同、是否允许空箱分成如下几类（对于不允许空箱的情况，应满足$m\leq n$）：</p>
 <h4 id="1-球相同，箱子相同，允许空箱"><a href="#1-球相同，箱子相同，允许空箱" class="headerlink" title="1. 球相同，箱子相同，允许空箱"></a>1. 球相同，箱子相同，允许空箱</h4><p>设$dp[i][j]$表示将i个球放入j个箱子在允许空箱的情况下的全部放法。则</p>
 <script type="math/tex; mode=display">
 dp[i][j]= \begin{cases}
@@ -230,242 +236,34 @@ C_{m+n-1}^{m-1}</script><h4 id="5-球不同，箱子不同，允许空箱"><a hr
 <script type="math/tex; mode=display">
 \Sigma_{k=1}^m S_2(n,k)</script><h4 id="8-球不同，箱子不同，不允许空箱"><a href="#8-球不同，箱子不同，不允许空箱" class="headerlink" title="8. 球不同，箱子不同，不允许空箱"></a>8. 球不同，箱子不同，不允许空箱</h4><p>只需要在箱子相同的答案基础上乘以$m!$即可，即$S_2(n,m)\times m!$</p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88/" rel="tag"># 排列组合</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/29/%E9%81%A5%E6%84%9F%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BB%BC%E8%BF%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foufor Past">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foufor Past">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/29/%E9%81%A5%E6%84%9F%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BB%BC%E8%BF%B0/" class="post-title-link" itemprop="url">遥感多模态综述</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-29 21:11:41" itemprop="dateCreated datePublished" datetime="2022-10-29T21:11:41+08:00">2022-10-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>From Single- to Multi-modal Remote Sensing Imagery Interpretation: A Survey and Taxonomy </p>
-<p>模态是信息的来源或形式。通过各种模态信息，人类可以从多个角度感知世界。同时，遥感观测是多模态的。我们通过全色、激光雷达和其他模态传感器宏观地观察世界。多模态遥感观测已成为一个活跃的领域，它有利于城市规划、监测和其他应用。尽管在这一领域取得了许多进展，但仍然没有一项全面的评估，能够为系统的概览提供统一的评价。因此，在本文中，我们首先强调了单模态和多模态遥感影像判读之间的关键差异，然后利用这些差异来指导我们对级联结构中多模态遥感影像判读的研究。最后，对未来可能的研究方向进行了探讨和展望。我们希望这项调查将成为研究人员回顾最新发展和开展多模式研究的起点。<br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/10/29/%E9%81%A5%E6%84%9F%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BB%BC%E8%BF%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/31/KMP%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foufor Past">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foufor Past">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/31/KMP%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">KMP算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-31 15:30:12" itemprop="dateCreated datePublished" datetime="2021-12-31T15:30:12+08:00">2021-12-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-30 20:02:00" itemprop="dateModified" datetime="2022-10-30T20:02:00+08:00">2022-10-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">算法学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>KMP算法简要介绍<br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/12/31/KMP%E7%AE%97%E6%B3%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/29/%E9%81%A5%E6%84%9F%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BB%BC%E8%BF%B0/" rel="prev" title="遥感多模态综述">
+      <i class="fa fa-chevron-left"></i> 遥感多模态综述
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/27/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Foufor Past">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Foufor Past">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/27/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-27 12:08:17" itemprop="dateCreated datePublished" datetime="2021-12-27T12:08:17+08:00">2021-12-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-28 00:16:33" itemprop="dateModified" datetime="2021-12-28T00:16:33+08:00">2021-12-28</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to my blogs. This website still need to be developed.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -518,6 +316,7 @@ C_{m+n-1}^{m-1}</script><h4 id="5-球不同，箱子不同，允许空箱"><a hr
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%90%83%E7%9B%B8%E5%90%8C%EF%BC%8C%E7%AE%B1%E5%AD%90%E7%9B%B8%E5%90%8C%EF%BC%8C%E5%85%81%E8%AE%B8%E7%A9%BA%E7%AE%B1"><span class="nav-number">1.</span> <span class="nav-text">1. 球相同，箱子相同，允许空箱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%90%83%E7%9B%B8%E5%90%8C%EF%BC%8C%E7%AE%B1%E5%AD%90%E7%9B%B8%E5%90%8C%EF%BC%8C%E4%B8%8D%E5%85%81%E8%AE%B8%E7%A9%BA%E7%AE%B1"><span class="nav-number">2.</span> <span class="nav-text">2. 球相同，箱子相同，不允许空箱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%90%83%E7%9B%B8%E5%90%8C%EF%BC%8C%E7%AE%B1%E5%AD%90%E4%B8%8D%E5%90%8C%EF%BC%8C%E4%B8%8D%E5%85%81%E8%AE%B8%E7%A9%BA%E7%AE%B1"><span class="nav-number">3.</span> <span class="nav-text">3. 球相同，箱子不同，不允许空箱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E7%90%83%E7%9B%B8%E5%90%8C%EF%BC%8C%E7%AE%B1%E5%AD%90%E4%B8%8D%E5%90%8C%EF%BC%8C%E5%85%81%E8%AE%B8%E7%A9%BA%E7%AE%B1"><span class="nav-number">4.</span> <span class="nav-text">4. 球相同，箱子不同，允许空箱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E7%90%83%E4%B8%8D%E5%90%8C%EF%BC%8C%E7%AE%B1%E5%AD%90%E4%B8%8D%E5%90%8C%EF%BC%8C%E5%85%81%E8%AE%B8%E7%A9%BA%E7%AE%B1"><span class="nav-number">5.</span> <span class="nav-text">5. 球不同，箱子不同，允许空箱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E7%90%83%E4%B8%8D%E5%90%8C%EF%BC%8C%E7%AE%B1%E5%AD%90%E7%9B%B8%E5%90%8C%EF%BC%8C%E4%B8%8D%E5%85%81%E8%AE%B8%E7%A9%BA%E7%AE%B1"><span class="nav-number">6.</span> <span class="nav-text">6. 球不同，箱子相同，不允许空箱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E7%90%83%E4%B8%8D%E5%90%8C%EF%BC%8C%E7%AE%B1%E5%AD%90%E7%9B%B8%E5%90%8C%EF%BC%8C%E5%85%81%E8%AE%B8%E7%A9%BA%E7%AE%B1"><span class="nav-number">7.</span> <span class="nav-text">7. 球不同，箱子相同，允许空箱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E7%90%83%E4%B8%8D%E5%90%8C%EF%BC%8C%E7%AE%B1%E5%AD%90%E4%B8%8D%E5%90%8C%EF%BC%8C%E4%B8%8D%E5%85%81%E8%AE%B8%E7%A9%BA%E7%AE%B1"><span class="nav-number">8.</span> <span class="nav-text">8. 球不同，箱子不同，不允许空箱</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -630,59 +429,6 @@ C_{m+n-1}^{m-1}</script><h4 id="5-球不同，箱子不同，允许空箱"><a hr
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 
