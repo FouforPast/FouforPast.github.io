@@ -155,6 +155,65 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/19/python%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3Top250/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Foufor Past">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Foufor Past">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/19/python%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3Top250/" class="post-title-link" itemprop="url">python爬取豆瓣Top250</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-19 20:46:12 / 修改时间：20:49:21" itemprop="dateCreated datePublished" datetime="2022-11-19T20:46:12+08:00">2022-11-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>思路很简单，先将原网页爬取出来，然后用正则表达式、BeautifulSoup和xpath3种方法提取想要的信息，这里暂时先只爬取电影名、导演、评分和标语。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> urlencode</span><br><span class="line"></span><br><span class="line">root = <span class="string">&#x27;https://movie.douban.com/top250&#x27;</span></span><br><span class="line">para = &#123;<span class="string">&#x27;start&#x27;</span>: <span class="number">0</span>, <span class="string">&#x27;filter&#x27;</span>: <span class="string">&#x27;&#x27;</span>&#125;</span><br><span class="line">headers = &#123;<span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)&#x27;</span></span><br><span class="line">                         <span class="string">&#x27; Chrome/92.0.4515.107 Safari/537.36 Edg/92.0.902.55&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 正则表达式</span></span><br><span class="line">writedata = []</span><br><span class="line">pattern = re.<span class="built_in">compile</span>(<span class="string">r&#x27;&lt;li&gt;.*?&lt;div class=&quot;info&quot;&gt;.*?&lt;span class=&quot;title&quot;&gt;(?P&lt;name&gt;.*?)&lt;/span&gt;&#x27;</span></span><br><span class="line">                     <span class="string">r&#x27;.*?&lt;p class=&quot;&quot;&gt;(?P&lt;director&gt;.*?)&amp;nbsp&#x27;</span></span><br><span class="line">                     <span class="string">r&#x27;.*?&lt;span class=&quot;rating_num&quot; property=&quot;v:average&quot;&gt;(?P&lt;score&gt;.*?)&lt;/span&gt;&#x27;</span></span><br><span class="line">                     <span class="string">r&#x27;.*?&lt;span class=&quot;inq&quot;&gt;(?P&lt;quote&gt;.*?)&lt;/span&gt;&#x27;</span>, re.S)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    para[<span class="string">&#x27;start&#x27;</span>] = i * <span class="number">25</span></span><br><span class="line">    url = root + <span class="string">&#x27;?&#x27;</span> + urlencode(para)</span><br><span class="line">    resp = requests.get(url, headers=headers)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> pattern.finditer(resp.text):</span><br><span class="line">        writedata.append([i.group(<span class="string">&#x27;name&#x27;</span>), i.group(<span class="string">&#x27;director&#x27;</span>).strip(), i.group(<span class="string">&#x27;score&#x27;</span>), i.group(<span class="string">&#x27;quote&#x27;</span>)])</span><br><span class="line">    resp.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># BeautifulSoup</span></span><br><span class="line">writedata = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    para[<span class="string">&#x27;start&#x27;</span>] = i * <span class="number">25</span></span><br><span class="line">    url = root + <span class="string">&#x27;?&#x27;</span> + urlencode(para)</span><br><span class="line">    resp = requests.get(url, headers=headers)</span><br><span class="line">    <span class="comment"># 生成bs对象</span></span><br><span class="line">    bs = BeautifulSoup(resp.text, <span class="string">&#x27;html.parser&#x27;</span>)</span><br><span class="line">    <span class="comment"># 从bs对象中查找数据</span></span><br><span class="line">    items = bs.find_all(name=<span class="string">&#x27;div&#x27;</span>, attrs=&#123;<span class="string">&#x27;class&#x27;</span>: <span class="string">&#x27;info&#x27;</span>&#125;)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">        name = item.find_all(name =<span class="string">&#x27;span&#x27;</span>, class_=<span class="string">&#x27;title&#x27;</span>)[<span class="number">0</span>].text</span><br><span class="line">        director = item.find_all(name =<span class="string">&#x27;p&#x27;</span>, class_=<span class="string">&#x27;&#x27;</span>)[<span class="number">0</span>].text.strip()</span><br><span class="line">        score = item.find_all(name=<span class="string">&#x27;span&#x27;</span>, class_=<span class="string">&#x27;rating_num&#x27;</span>)[<span class="number">0</span>].text</span><br><span class="line">        quote = item.find_all(name=<span class="string">&#x27;span&#x27;</span>, class_=<span class="string">&#x27;inq&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span>(quote == []):</span><br><span class="line">            quote = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            quote = item.find_all(name=<span class="string">&#x27;span&#x27;</span>, class_=<span class="string">&#x27;inq&#x27;</span>)[<span class="number">0</span>].text</span><br><span class="line">        writedata.append([name, director, score, quote])</span><br><span class="line">    resp.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># xpath</span></span><br><span class="line">writedata = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    para[<span class="string">&#x27;start&#x27;</span>] = i * <span class="number">25</span></span><br><span class="line">    url = root + <span class="string">&#x27;?&#x27;</span> + urlencode(para)</span><br><span class="line">    resp = requests.get(url, headers=headers)</span><br><span class="line">    tree = etree.HTML(resp.text)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">26</span>):</span><br><span class="line">        name = tree.xpath(<span class="string">f&#x27;//*[@id=&quot;content&quot;]/div/div[1]/ol/li[<span class="subst">&#123;j&#125;</span>]/div/div[2]/div[1]/a/span[1]/text()&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 一次提取无法将导演信息准确提取出，需要利用正则表达式再提取一次</span></span><br><span class="line">        message = tree.xpath(<span class="string">f&#x27;//*[@id=&quot;content&quot;]/div/div[1]/ol/li[<span class="subst">&#123;j&#125;</span>]/div/div[2]/div[2]/p[1]/text()[1]&#x27;</span>)[<span class="number">0</span>].strip()</span><br><span class="line">        director = re.search(<span class="string">r&#x27;导演: (?P&lt;director&gt;.*?) &#x27;</span>, message, re.S).group()</span><br><span class="line">        score = tree.xpath(<span class="string">f&#x27;//*[@id=&quot;content&quot;]/div/div[1]/ol/li[<span class="subst">&#123;j&#125;</span>]/div/div[2]/div[2]/div/span[2]/text()&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">        quote = tree.xpath(<span class="string">f&#x27;//*[@id=&quot;content&quot;]/div/div[1]/ol/li[<span class="subst">&#123;j&#125;</span>]/div/div[2]/div[2]/p[2]/span/text()&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span>(quote == []):</span><br><span class="line">            quote = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            quote = quote[<span class="number">0</span>]</span><br><span class="line">        writedata.append([name, director, score, quote])</span><br><span class="line"></span><br><span class="line">    resp.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;films.csv&#x27;</span>, <span class="string">&#x27;w&#x27;</span>, newline=<span class="string">&quot;&quot;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    csvwriter = csv.writer(f)</span><br><span class="line">    csvwriter.writerow([<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;director&#x27;</span>, <span class="string">&#x27;score&#x27;</span>, <span class="string">&#x27;quote&#x27;</span>])</span><br><span class="line">    csvwriter.writerows(writedata)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure><br>3种方法作比较，xpath是最简单的，在chrome中找到想要提取的元素后可以直接右键复制路径，不过可能需要正则表达式进行进一步处理；正则表达式写起来较为复杂，但是运行速度和效率都最高。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/03/n%E4%B8%AA%E7%90%83%E6%94%BE%E5%85%A5m%E4%B8%AA%E7%AE%B1%E5%AD%90%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -178,10 +237,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-11-03 18:57:13 / 修改时间：18:59:14" itemprop="dateCreated datePublished" datetime="2022-11-03T18:57:13+08:00">2022-11-03</time>
+              <time title="创建时间：2022-11-03 18:57:13" itemprop="dateCreated datePublished" datetime="2022-11-03T18:57:13+08:00">2022-11-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-19 20:47:39" itemprop="dateModified" datetime="2022-11-19T20:47:39+08:00">2022-11-19</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -513,7 +578,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -526,7 +591,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
