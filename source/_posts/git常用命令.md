@@ -74,7 +74,9 @@ ssh-keygen -t rsa-C "email" # 创建ssh key
 git remote -v # 查看远程仓库状态
 git remote add <name> <url> # 将一个新的远程仓库添加到本地仓库。<name>是远程仓库的名称，<url>是远程仓库的UR
 git branch -M main # 当前的分支重命名为"main"
-git push [-u] <name> <branch> # 提交到远程仓库
+git branch --set-upstream-to=origin/main main #将本地main分支与远程origin仓库的main分支建立关联关系
+git push [-u] <name> <branch> # 将本地的branch分支提交到远程仓库name，如果远程仓库没有branch分支，就会创建一个，-u表示在推送同时，将本地分支与远程分支建立关联关系，通常，第一次推送分支时使用-u选项
+git push <name(远程仓库名称)> <branch1(本地分支名称)>:<branch2(远程分支名称)> #将本地branch1分支推送到远程仓库name的branch2分支
 git fetch # 从远程仓库中获取最新的提交、分支和标签信息，但不修改
 git pull # 从远程仓库拉取并合并到当前分支，相当于git fetch + git merge
 git checkout -b <new-branch> <start-point> # 创建并切换到一个新的分支，将其起点设置为远程仓库的start-point(e.g. origin/dev)分支
