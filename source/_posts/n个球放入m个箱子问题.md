@@ -71,7 +71,7 @@ $i>j$时，$S_2(i,j)$可以分为两种情况，一种情况是第i个球单独�
 
 [第二类斯特林数的展开式_百度百科 (baidu.com)](https://baike.baidu.com/item/第二类斯特林数的展开式/16516893)
 
-![image-20221119204739064](C:/Users/User/AppData/Roaming/Typora/typora-user-images/image-20221119204739064.png)
+![image-20231027163750718](https://cdn.jsdelivr.net/gh/FouforPast/pic-storage@main/img/image-20231027163750718.png)
 
 #### 7. 球不同，箱子相同，允许空箱
 
