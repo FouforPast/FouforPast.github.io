@@ -51,7 +51,7 @@ highlight:
   wrap: true
   hljs: false
 prismjs:
-  enable: false
+  enable: true
   preprocess: true
   line_number: true
   tab_replace: ''
@@ -97,8 +97,11 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+# theme: landscape
 # theme: next
+# theme: antiquity
+# theme: prontera
+theme: shoka
 
 live2d:
   enable: true
@@ -111,7 +114,7 @@ live2d:
   model:
     use: live2d-widget-model-shizuku
   display:
-    position: right
+    position: left
     width: 150
     height: 300
   mobile:
@@ -124,5 +127,75 @@ deploy:
   repository: git@github.com:FouforPast/FouforPast.github.io.git
   branch: main
 
+# 加入 markdown 配置，用来渲染 md 文件
+markdown:
+  render: # 渲染器设置
+    html: false # 过滤 HTML 标签
+    xhtmlOut: true # 使用 '/' 来闭合单标签 （比如 <br />）。
+    breaks: true # 转换段落里的 '\n' 到 <br>。
+    linkify: true # 将类似 URL 的文本自动转换为链接。
+    typographer: 
+    quotes: '“”‘’'
+  plugins: # markdown-it 插件设置
+    - plugin:
+        name: markdown-it-toc-and-anchor
+        enable: true
+        options: # 文章目录以及锚点应用的 class 名称，shoka 主题必须设置成这样
+          tocClassName: 'toc'
+          anchorClassName: 'anchor'
+    - plugin:
+        name: markdown-it-multimd-table
+        enable: true
+        options:
+          multiline: true
+          rowspan: true
+          headerless: true
+    - plugin:
+        name: ./markdown-it-furigana
+        enable: true
+        options:
+          fallbackParens: "()"
+    - plugin:
+        name: ./markdown-it-spoiler
+        enable: true
+        options:
+          title: "你知道得太多了"
+# 加入 minify 配置，压缩 css/js/html
+minify:
+  html:
+    enable: true
+    exclude: # 排除 hexo-feed 用到的模板文件
+      - '**/json.ejs'
+      - '**/atom.ejs'
+      - '**/rss.ejs'
+  css:
+    enable: true
+    exclude:
+      - '**/*.min.css'
+  js:
+    enable: true
+    mangle:
+      toplevel: true
+    output:
+    compress:
+    exclude:
+      - '**/*.min.js'
 
-
+# 缺少这个插件，首页卡片翻转效果在部分浏览器中无法正确显示。
+autoprefixer:
+  exclude:
+    - '*.min.css'
+algolia:
+  appId: #Your appId
+  apiKey: #Your apiKey
+  adminApiKey: #Your adminApiKey
+  chunkSize: 5000
+  indexName: #"shoka"
+  fields:
+    - title #必须配置
+    - path #必须配置
+    - categories #推荐配置
+    - content:strip:truncate,0,2000
+    - gallery
+    - photos
+    - tags
