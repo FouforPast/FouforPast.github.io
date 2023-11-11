@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "hexo": "^7.0.0",
+    "hexo-algoliasearch": "^1.0.0",
     "hexo-asset-image": "^1.0.0",
+    "hexo-autoprefixer": "^2.0.0",
     "hexo-deployer-git": "^4.0.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
@@ -24,7 +26,9 @@
     "hexo-renderer-kramed": "^0.1.4",
     "hexo-renderer-stylus": "^3.0.0",
     "hexo-server": "^3.0.0",
+    "hexo-symbols-count-time": "^0.7.1",
     "hexo-theme-landscape": "^1.0.0",
+    "highlight.js": "^11.9.0",
     "live2d-widget-model-shizuku": "^1.0.5",
     "pangu": "^4.0.7"
   }
