@@ -46,7 +46,7 @@ future: true
 highlight:
   enable: false
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace: ''
   wrap: true
   hljs: false
@@ -55,13 +55,7 @@ prismjs:
   preprocess: true
   line_number: true
   tab_replace: ''
-# highlight:
-#   enable: true # edit for Theme.shoka
-#   line_number: true
-#   auto_detect: true
-#   tab_replace: ''
-# prismjs:
-#   enable: true # edit for Theme.shoka
+
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')

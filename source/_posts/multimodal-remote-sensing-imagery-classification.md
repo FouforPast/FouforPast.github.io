@@ -1,5 +1,5 @@
 ---
-title: More diverse means better_ multimodal deep learning meets remote-sensing imagery classification论文笔记
+title: More diverse means better, multimodal deep learning meets remote-sensing imagery classification论文笔记
 tags:
   - 遥感
   - 多模态
@@ -24,11 +24,11 @@ categories:
 
 这个网络包含两种形式，一种是pixel-wise结构的FC-Nets，另外一种是spatial-spectral结构的CNNs。FC-Nets和CNNs都包含两个阶段的网络，分别是Ex-Net(feature extraction)和Fu-Net(feature fusion)。
 
-![image-20230307221607498](multimodal-remote-sensing-imagery-classification/image-20230307221607498.png)
+![image-20230307221607498](https://cdn.jsdelivr.net/gh/FouforPast/pic-storage@main/img/image-20230307221607498.png)
 
 网络的具体架构如下：
 
-![image-20230307221824258](multimodal-remote-sensing-imagery-classification/image-20230307221824258.png)
+![image-20230307221824258](https://cdn.jsdelivr.net/gh/FouforPast/pic-storage@main/img/image-20230307221824258.png)
 
 整体来说网络结构比较简单，比较值得看的是特征融合方法。
 
@@ -36,7 +36,7 @@ categories:
 
 本文提出了5种用于特征融合的方法，可以分为两类：Concatenation-Based Fusion和Compactness-Based Fusion。
 
-![image-20230307230019486](multimodal-remote-sensing-imagery-classification/image-20230307230019486.png)
+![image-20230307230019486](https://cdn.jsdelivr.net/gh/FouforPast/pic-storage@main/img/image-20230307230019486.png)
 
 Concatenation-Based Fusion顾名思义，就是把得到的两个模态的特征图拼接起来，根据融合位置的不同，可以分为早期融合、中期融合和后期融合。早期融合将两个模态的数据在输入到神经网络之前进行融合（从源码来看其实就是一个单流网络）。中期和后期融合是在网络的中期和后期进行融合，是双流网络的架构。
 
@@ -47,6 +47,6 @@ $$
 $$
 针对这五种融合策略，作者做了实验发现，Concatenation-Based Fusion的方法，跨模态的神经元很少被激活，也就是说两个模态虽然被拼接到一块了，但其实并没有有效融合。Compactness-Based Fusion可以缓解这种问题，尤其是交叉融合的效果最显著。
 
-![image-20230307230458868](multimodal-remote-sensing-imagery-classification/image-20230307230458868.png)
+![image-20230307230458868](https://cdn.jsdelivr.net/gh/FouforPast/pic-storage@main/img/image-20230307230458868.png)
 
 最后的实验结果上，融合方法最好的是交叉融合，尤其是在CML的实验中，交叉融合的优势更加显著。
