@@ -24,13 +24,15 @@
 <link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
   
+  <meta name="keywords" content="LeetCode" />
 
-<link rel="canonical" href="https://fouforpast.github.io/2023/11/11/hello-world/">
+
+<link rel="canonical" href="https://fouforpast.github.io/2023/11/15/%E5%88%B7%E9%A2%98%E5%B8%B8%E7%94%A8api/">
 
 
 
   <title>
-Hello World |
+刷题常用 api |
 Foufor Past = FP 的一亩三分地</title>
 <meta name="generator" content="Hexo 7.0.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -58,16 +60,16 @@ Foufor Past = FP 的一亩三分地</title>
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">Hello World
+  <h1 itemprop="name headline">刷题常用 api
   </h1>
   
 <div class="meta">
-  <span class="item" title="创建时间：2023-11-11 10:32:27">
+  <span class="item" title="创建时间：2023-11-15 17:08:09">
     <span class="icon">
       <i class="ic i-calendar"></i>
     </span>
     <span class="text">发表于</span>
-    <time itemprop="dateCreated datePublished" datetime="2023-11-11T10:32:27+08:00">2023-11-11</time>
+    <time itemprop="dateCreated datePublished" datetime="2023-11-15T17:08:09+08:00">2023-11-15</time>
   </span>
 </div>
 
@@ -100,12 +102,12 @@ Foufor Past = FP 的一亩三分地</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giciuja1j1j20zk0m8kjl.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipewr8iypj20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipexe4oykj20zk0m87ji.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclfw2t96j20zk0m8x6p.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclize41wj20zk0m87gk.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipevarprfj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipew8gmvyj20zk0m87wh.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giciszlczyj20zk0m816d.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicitcxhpij20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipey84bjtj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicis3attqj20zk0m8k7l.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclx6phq6j20zk0m8e36.jpg"></li>
         </ul>
       </div>
     </header>
@@ -134,7 +136,7 @@ Foufor Past = FP 的一亩三分地</title>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
-  <link itemprop="mainEntityOfPage" href="https://fouforpast.github.io/2023/11/11/hello-world/">
+  <link itemprop="mainEntityOfPage" href="https://fouforpast.github.io/2023/11/15/%E5%88%B7%E9%A2%98%E5%B8%B8%E7%94%A8api/">
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/avatar.jpg">
@@ -149,14 +151,28 @@ Foufor Past = FP 的一亩三分地</title>
   <div class="body md" itemprop="articleBody">
     
 
-    <p>Welcome to my blogs. This website still needs to be developed.</p>
+    <p>鉴于有些api刷题经常用到又常常忘记，遂写下这篇文章进行记录</p>
+<span id="more"></span>
+<h3 id="1-Java"><a href="#1-Java" class="headerlink" title="1. Java"></a>1. Java</h3><h4 id="1-1-Array和ArrayList互转"><a href="#1-1-Array和ArrayList互转" class="headerlink" title="1.1 Array和ArrayList互转"></a>1.1 Array和ArrayList互转</h4><h5 id="1-1-1-利用Stream"><a href="#1-1-1-利用Stream" class="headerlink" title="1.1.1 利用Stream"></a>1.1.1 利用Stream</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 非装箱类型</span></span><br><span class="line">List&lt;Integer&gt; arrayList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;()&#123;&#123;add(<span class="number">3</span>);add(<span class="number">2</span>);add(<span class="number">4</span>);add(<span class="number">2</span>);add(<span class="number">3</span>);add(<span class="number">5</span>);add(<span class="number">4</span>);add(<span class="number">5</span>);&#125;&#125;;</span><br><span class="line"><span class="comment">// arrayList转array</span></span><br><span class="line"><span class="type">int</span>[] array = arrayList.stream().mapToInt(Integer::valueOf).toArray();</span><br><span class="line"><span class="comment">// array转arrayList</span></span><br><span class="line">arrayList = Arrays.stream(array).boxed().collect(Collectors.toCollection(ArrayList::<span class="keyword">new</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// String类型</span></span><br><span class="line">List&lt;String&gt; arrayList2 = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;()&#123;&#123;add(<span class="string">&quot;3&quot;</span>);add(<span class="string">&quot;2&quot;</span>);add(<span class="string">&quot;4&quot;</span>);add(<span class="string">&quot;2&quot;</span>);add(<span class="string">&quot;3&quot;</span>);add(<span class="string">&quot;5&quot;</span>);add(<span class="string">&quot;4&quot;</span>);add(<span class="string">&quot;5&quot;</span>);&#125;&#125;;</span><br><span class="line"><span class="comment">// arrayList转array</span></span><br><span class="line">String[] array2 = arrayList2.stream().toArray(String[]::<span class="keyword">new</span>);</span><br><span class="line"><span class="comment">// array转arrayList</span></span><br><span class="line">arrayList2 = Arrays.stream(array2).collect(Collectors.toCollection(ArrayList::<span class="keyword">new</span>));</span><br></pre></td></tr></table></figure>
+<h5 id="1-1-2-Arrays-toList和ArrayList-toArray"><a href="#1-1-2-Arrays-toList和ArrayList-toArray" class="headerlink" title="1.1.2 Arrays.toList和ArrayList.toArray()"></a>1.1.2 Arrays.toList和ArrayList.toArray()</h5><p>这种方法只能用于装箱类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; arrayList2 = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;()&#123;&#123;add(<span class="string">&quot;3&quot;</span>);add(<span class="string">&quot;2&quot;</span>);add(<span class="string">&quot;4&quot;</span>);add(<span class="string">&quot;2&quot;</span>);add(<span class="string">&quot;3&quot;</span>);add(<span class="string">&quot;5&quot;</span>);add(<span class="string">&quot;4&quot;</span>);add(<span class="string">&quot;5&quot;</span>);&#125;&#125;;</span><br><span class="line"><span class="comment">// arrayList转array</span></span><br><span class="line">String[] array2 = arrayList2.toArray(<span class="keyword">new</span> <span class="title class_">String</span>[<span class="number">0</span>]); </span><br><span class="line"><span class="comment">//或者String[] array2 = arrayList2.toArray(new String[arrayList2.size()]);</span></span><br><span class="line"><span class="comment">// array转arrayList</span></span><br><span class="line">ArrayList&lt;String&gt; arrayList3 = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(Arrays.asList(array2)); <span class="comment">//直接使用Arrays.asList(T[] a)赋值，返回的列表大小是固定的</span></span><br></pre></td></tr></table></figure>
 
+      <div class="tags">
+          <a href="/tags/LeetCode/" rel="tag"><i class="ic i-tag"></i> LeetCode</a>
+      </div>
   </div>
 
    <footer>
 
     <div class="meta">
-  <span id="2023/11/11/hello-world/" class="item leancloud_visitors" data-flag-title="Hello World" title="阅读次数">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-11-15 18:03:11" itemprop="dateModified" datetime="2023-11-15T18:03:11+08:00">2023-11-15</time>
+  </span>
+  <span id="2023/11/15/刷题常用api/" class="item leancloud_visitors" data-flag-title="刷题常用 api" title="阅读次数">
       <span class="icon">
         <i class="ic i-eye"></i>
       </span>
@@ -175,7 +191,7 @@ Foufor Past = FP 的一亩三分地</title>
   </li>
   <li class="link">
     <strong>本文链接：</strong>
-    <a href="https://fouforpast.github.io/2023/11/11/hello-world/" title="Hello World">https://fouforpast.github.io/2023/11/11/hello-world/</a>
+    <a href="https://fouforpast.github.io/2023/11/15/%E5%88%B7%E9%A2%98%E5%B8%B8%E7%94%A8api/" title="刷题常用 api">https://fouforpast.github.io/2023/11/15/刷题常用api/</a>
   </li>
   <li class="license">
     <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -194,22 +210,14 @@ Foufor Past = FP 的一亩三分地</title>
     <div class="item left">
       
 
-  <a href="/2023/10/27/%E5%B9%B6%E6%9F%A5%E9%9B%86/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipetlbztpj20zk0m84qp.jpg" title="并查集">
+  <a href="/2023/11/13/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%A8%A1%E6%9D%BF/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclfb3vzhj20zk0m8wny.jpg" title="树状数组模板">
   <span class="type">上一篇</span>
   <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>并查集</h3>
+  <h3>树状数组模板</h3>
   </a>
 
     </div>
     <div class="item right">
-      
-
-  <a href="/2023/11/11/multimodal-remote-sensing-imagery-classification/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giph4wqtg4j20zk0m8x6p.jpg" title="More diverse means better, multimodal deep learning meets remote-sensing imagery classification论文笔记">
-  <span class="type">下一篇</span>
-  <span class="category"><i class="ic i-flag"></i> 论文阅读</span>
-  <h3>More diverse means better, multimodal deep learning meets remote-sensing imagery classification论文笔记</h3>
-  </a>
-
     </div>
 </div>
 
@@ -226,6 +234,7 @@ Foufor Past = FP 的一亩三分地</title>
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Java"><span class="toc-number">1.</span> <span class="toc-text">1. Java</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-Array%E5%92%8CArrayList%E4%BA%92%E8%BD%AC"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Array和ArrayList互转</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-1-%E5%88%A9%E7%94%A8Stream"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1 利用Stream</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-2-Arrays-toList%E5%92%8CArrayList-toArray"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 Arrays.toList和ArrayList.toArray()</span></a></li></ol></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
       </div>
@@ -303,12 +312,10 @@ Foufor Past = FP 的一亩三分地</title>
 
   <ul id="quick">
     <li class="prev pjax">
-        <a href="/2023/10/27/%E5%B9%B6%E6%9F%A5%E9%9B%86/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
-        <a href="/2023/11/11/multimodal-remote-sensing-imagery-classification/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -345,7 +352,7 @@ Foufor Past = FP 的一亩三分地</title>
   </div>
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: '2023/11/11/hello-world/',
+    path: '2023/11/15/刷题常用api/',
     favicon: {
       show: "（●´3｀●）Goooood",
       hide: "(´Д｀)Booooom"
