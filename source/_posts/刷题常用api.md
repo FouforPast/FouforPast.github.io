@@ -43,3 +43,12 @@ String[] array2 = arrayList2.toArray(new String[0]);
 // array转arrayList
 ArrayList<String> arrayList3 = new ArrayList<>(Arrays.asList(array2)); //直接使用Arrays.asList(T[] a)赋值，返回的列表大小是固定的
 ```
+
+### 2. Python
+
+#### 2.1 bisect_left和bisect_right
+
+这两个函数用来执行二分搜索。例如有`a=[1,2,3,3,3,4,5,6]`数组，则
+
+- `bisect_left(a,3)`=2，该函数搜索从左往右数小于给定元素的最大位置，即该元素所在区间的的左边界。
+- `bisect_left(a,3)`=5，该函数搜索从右往左大于给定元素的最小位置，即该元素所在区间的的右边界的下一个位置。
