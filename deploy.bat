@@ -1,1 +1,2 @@
 bash deploy.sh
+pause
