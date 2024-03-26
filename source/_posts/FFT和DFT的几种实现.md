@@ -80,11 +80,12 @@ F(u) &= w_N^{u^2/2} \sum_{x=0}^{N-1} g(x) \cdot h(u-x) \\
 $$
 然后使用卷积定理，并补零到2的幂次：
 
-```
+$$
 \begin{aligned}
 F(u) &= w_N^{u^2/2} \sum_{x=0}^{N-1} g(x) \cdot h(u-x) \\
      &= w_N^{u^2/2} \text{IFFT}_2\left(\text{FFT}_2(\text{pad}(g)) \cdot \text{FFT}_2(\text{pad}(h'))\right),
 \end{aligned}
-```
+$$
+
 
 其中 `pad` 表示补零操作，`FFT_2` 和 `IFFT_2` 分别表示基2的迭代形式FFT算法和逆FFT算法。这里，`h'` 是 `h` 在对称中心进行延拓后得到的信号。
