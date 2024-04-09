@@ -1,0 +1,532 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="FP的一亩三分地" href="https://fouforpast.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="FP的一亩三分地" href="https://fouforpast.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="FP的一亩三分地" href="https://fouforpast.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="算法模板" />
+
+
+<link rel="canonical" href="https://fouforpast.github.io/2023/12/24/%E5%90%84%E7%B1%BB%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A8%A1%E6%9D%BF/">
+
+
+
+  <title>
+各类最短路模板 |
+Foufor Past = FP 的一亩三分地</title>
+<meta name="generator" content="Hexo 7.0.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">各类最短路模板
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-12-24 21:12:11">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-12-24T21:12:11+08:00">2023-12-24</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Foufor Past</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclxxcb6rj20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicitcxhpij20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giph4fomxoj20zk0m8axp.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipetfk5zwj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipevarprfj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclgrvbd6j20zk0m8qv5.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://fouforpast.github.io/2023/12/24/%E5%90%84%E7%B1%BB%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A8%A1%E6%9D%BF/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Foufor Past">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="FP 的一亩三分地">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <span id="more"></span>
+<p>参考：<span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy9maW5kLXRoZS1jaXR5LXdpdGgtdGhlLXNtYWxsZXN0LW51bWJlci1vZi1uZWlnaGJvcnMtYXQtYS10aHJlc2hvbGQtZGlzdGFuY2Uvc29sdXRpb25zLzI1MjYwNTIvZ29uZy1zaHVpLXNhbi14aWUtaGFuLWdhaS1zdW8teW91LWN1bi10dS1zdnE3Lw==">涵盖所有「存图方式」与「最短路算法」(史上最全)</span></p>
+<h3 id="1-存图方式"><a href="#1-存图方式" class="headerlink" title="1. 存图方式"></a>1. 存图方式</h3><h4 id="1-1-邻接矩阵（稠密图）"><a href="#1-1-邻接矩阵（稠密图）" class="headerlink" title="1.1 邻接矩阵（稠密图）"></a>1.1 邻接矩阵（稠密图）</h4><p>使用二维矩阵来存图。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// w[a][b] = c 代表从 a 到 b 有权重为 c 的边</span></span><br><span class="line"><span class="type">int</span>[][] g = <span class="keyword">new</span> <span class="title class_">int</span>[N][N];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加边操作</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> c)</span> &#123;</span><br><span class="line">    g[a][b] = c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-邻接表（稀疏图）"><a href="#1-2-邻接表（稀疏图）" class="headerlink" title="1.2 邻接表（稀疏图）"></a>1.2 邻接表（稀疏图）</h4><p>即链式前向星。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] head = <span class="keyword">new</span> <span class="title class_">int</span>[N], e = <span class="keyword">new</span> <span class="title class_">int</span>[M], next = <span class="keyword">new</span> <span class="title class_">int</span>[M], w = <span class="keyword">new</span> <span class="title class_">int</span>[M];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加边操作</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> c)</span> &#123;</span><br><span class="line">    e[idx] = b;</span><br><span class="line">    next[idx] = head[a];</span><br><span class="line">    w[idx] = c;</span><br><span class="line">    head[a] = idx++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历以某个节点为起点的边</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> head[a]; i != -<span class="number">1</span>; i = next[i]) &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> e[i], c = w[i]; <span class="comment">// 存在由 a 指向 b 的边，权重为 c</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-3-二维列表"><a href="#1-3-二维列表" class="headerlink" title="1.3 二维列表"></a>1.3 二维列表</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt;[] g = <span class="keyword">new</span> <span class="title class_">ArrayList</span>[n];</span><br><span class="line">Arrays.setAll(g, e -&gt; <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;());</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span>[] e : edges) &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> e[<span class="number">0</span>], y = e[<span class="number">1</span>];</span><br><span class="line">    g[x].add(y);</span><br><span class="line">    g[y].add(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 遍历</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> y : g[x]) &#123;</span><br><span class="line">    <span class="keyword">if</span> (y != fa) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-最短路算法"><a href="#2-最短路算法" class="headerlink" title="2. 最短路算法"></a>2. 最短路算法</h3><h4 id="2-1-Floyd算法（Floyd-Warshall算法），适合有向图或无向图、负权边、多源最短路，可以判定负权环"><a href="#2-1-Floyd算法（Floyd-Warshall算法），适合有向图或无向图、负权边、多源最短路，可以判定负权环" class="headerlink" title="2.1 Floyd算法（Floyd-Warshall算法），适合有向图或无向图、负权边、多源最短路，可以判定负权环"></a>2.1 Floyd算法（Floyd-Warshall算法），适合有向图或无向图、负权边、多源最短路，可以判定负权环</h4><p>参考<span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy9maW5kLXRoZS1jaXR5LXdpdGgtdGhlLXNtYWxsZXN0LW51bWJlci1vZi1uZWlnaGJvcnMtYXQtYS10aHJlc2hvbGQtZGlzdGFuY2Uvc29sdXRpb25zLzEvZGFpLW5pLWZhLW1pbmctZmxveWQtc3Vhbi1mYS1jb25nLWppLXlpLW04czUxLw==">带你发明 Floyd 算法：从记忆化搜索到递推</span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy9udW1iZXItb2YtcG9zc2libGUtc2V0cy1vZi1jbG9zaW5nLWJyYW5jaGVzL2Rlc2NyaXB0aW9uLw==">2959. 关闭分部的可行集合数目 - 力扣（LeetCode）</span>这道题可以加深对Floyd算法本质的理解。</p>
+<h5 id="适用范围："><a href="#适用范围：" class="headerlink" title="适用范围："></a>适用范围：</h5><p>Floyd-Warshall算法适用于解决图中所有节点对之间最短路径的问题，包括有向图或无向图，可以处理带有负权边和负权环的情况。</p>
+<ul>
+<li>适用于有向图或无向图。</li>
+<li>适用于边权重可能为负值的情况。</li>
+<li>适用于检测图中是否存在负权环。</li>
+</ul>
+<h5 id="算法流程："><a href="#算法流程：" class="headerlink" title="算法流程："></a>算法流程：</h5><ol>
+<li><p><strong>初始化：</strong> 创建一个二维数组<code>dist</code>，其中<code>dist[i][j]</code>表示从节点i到节点j的最短路径长度。初始时，<code>dist[i][j]</code>的值为图中节点i到节点j的直接距离，如果两节点之间没有直接边相连，则初始化为无穷大。</p>
+</li>
+<li><p><strong>动态规划：</strong> 对于每一个中间节点k（从1到总节点数），遍历所有节点对(i, j)，并尝试通过中间节点k来优化路径长度。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k from <span class="number">1</span> to total_nodes:</span><br><span class="line">    <span class="keyword">for</span> <span class="selector-tag">i</span> from <span class="number">1</span> to total_nodes:</span><br><span class="line">        <span class="keyword">for</span> j from <span class="number">1</span> to total_nodes:</span><br><span class="line">            dist<span class="selector-attr">[i]</span><span class="selector-attr">[j]</span> = <span class="built_in">min</span>(dist<span class="selector-attr">[i]</span><span class="selector-attr">[j]</span>, dist<span class="selector-attr">[i]</span><span class="selector-attr">[k]</span> + dist<span class="selector-attr">[k]</span><span class="selector-attr">[j]</span>)</span><br></pre></td></tr></table></figure>
+<p>其中，<code>dist[i][j]</code>表示从节点i到节点j的最短路径长度，<code>dist[i][k]</code>表示从节点i到中间节点k的路径长度，<code>dist[k][j]</code>表示从中间节点k到节点j的路径长度。通过比较当前的最短路径长度和经过中间节点k的路径长度之和，更新最短路径长度。</p>
+</li>
+<li><p><strong>检测负权环：</strong> 遍历所有节点i，如果<code>dist[i][i]</code>小于0，则存在负权环。</p>
+</li>
+<li><p><strong>输出结果：</strong> 最终，<code>dist</code>数组中存储的就是所有节点对之间的最短路径。</p>
+</li>
+</ol>
+<p>Floyd-Warshall算法适用于对图中所有节点对之间的最短路径进行一次性计算，包括检测负权环。它是一种全局最优的算法，但其时间复杂度为O(V^3)，在大规模图上可能不够高效。</p>
+<h5 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">floyd</span><span class="params">(<span class="type">int</span>[][] g)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> g.length;</span><br><span class="line">    <span class="comment">// floyd 基本流程为三层循环: [枚举中转点 - 枚举起点 - 枚举终点] =&gt; 松弛操作  </span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">p</span> <span class="operator">=</span> <span class="number">0</span>; p &lt; n; p++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                g[i][j] = Math.min(g[i][j], g[i][p] + g[p][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度$O(n^3)$；</p>
+<p>空间复杂度$O(n^2)$。</p>
+<p>判断负权环的方式，运行完Floyd算法之后，若存在i使得$g[i][i]&lt;0$，说明存在负权环。</p>
+<h4 id="2-2-Dijkstra算法，适合有向图、无向图，单源最短路，要求无负权边和负权环"><a href="#2-2-Dijkstra算法，适合有向图、无向图，单源最短路，要求无负权边和负权环" class="headerlink" title="2.2 Dijkstra算法，适合有向图、无向图，单源最短路，要求无负权边和负权环"></a>2.2 Dijkstra算法，适合有向图、无向图，单源最短路，要求无负权边和负权环</h4><p><strong>Dijkstra算法</strong></p>
+<h5 id="适用范围：-1"><a href="#适用范围：-1" class="headerlink" title="适用范围："></a>适用范围：</h5><p>Dijkstra算法适用于解决图中单源最短路径的问题，其中边的权重必须为非负值。这是因为Dijkstra算法基于贪心策略，每次选择当前距离最短的节点进行扩展，负权边可能导致不正确的结果。</p>
+<ul>
+<li>适用于有向图或无向图。</li>
+<li><p>适用于边权重为非负值的情况。</p>
+<ul>
+<li><p>负权边的存在可能导致以下问题：</p>
+<ol>
+<li><strong>无法保证贪心选择的正确性：</strong> Dijkstra算法的贪心策略是每次选择当前距离最短的节点来进行扩展。在存在负权边的图中，这样的选择可能导致不正确的结果，因为通过一个负权边可能会使得路径变得更短，而Dijkstra算法无法考虑到这一点。</li>
+<li><strong>可能导致循环计算：</strong> 负权边可能导致在图中形成无限循环，从而使得Dijkstra算法陷入无限循环的情况。</li>
+<li><strong>无法处理负权环：</strong> 如果存在负权环，那么从该环中的节点出发，通过环形路径返回，路径上的总权重为负值。这种情况下，Dijkstra算法无法正常运行，因为负权环可能导致无限循环的问题。</li>
+</ol>
+</li>
+<li><p>对于负权边的处理，简单的把所有权值都加上某个数是不对的，这样无法保证图中任意一条路径都加上固定的权值。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="算法流程：-1"><a href="#算法流程：-1" class="headerlink" title="算法流程："></a>算法流程：</h5><ol>
+<li><p><strong>初始化：</strong> 设置源节点的最短路径为0，其他节点的最短路径为正无穷大。创建一个优先队列（最小堆）用于选择当前距离最短的节点。</p>
+</li>
+<li><p><strong>贪心选择：</strong> 从优先队列中选择当前距离最短的节点u，标记节点u为已访问。</p>
+<blockquote>
+<p>注意，标记访问操作可以用visit数组实现，也可以比较dist实现。</p>
+</blockquote>
+</li>
+<li><p><strong>松弛操作：</strong> 对节点u的所有相邻节点v进行松弛操作，通过比较源节点到达某个节点v的当前最短路径和经过当前边到达该节点v的路径的权重，更新最短路径信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for each neighbor v of u:</span><br><span class="line">    if dist[u] + weight(u, v) &lt; dist[v]:</span><br><span class="line">        dist[v] = dist[u] + weight(u, v)</span><br><span class="line">        // 更新优先队列中节点v的距离信息</span><br></pre></td></tr></table></figure>
+<p>其中，<code>dist[u]</code>表示从源节点到节点u的当前最短路径长度，<code>weight(u, v)</code>表示边(u, v)的权重。</p>
+</li>
+<li><p><strong>重复步骤2和3：</strong> 重复贪心选择和松弛操作，直到优先队列为空，表示所有可达节点已被访问。</p>
+</li>
+<li><p><strong>输出结果：</strong> 最终，<code>dist</code>数组中存储的就是源节点到各个节点的最短路径。</p>
+</li>
+</ol>
+<p>Dijkstra算法能够高效地求解无负权边的图中的单源最短路径问题。然而，由于其贪心的特性，它无法处理带有负权边的图。在这种情况下，其他算法如Bellman-Ford或SPFA可能更为适用。</p>
+<h5 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] dijkstra(<span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="comment">// 起始先将所有的点标记为「未更新」和「距离为正无穷」</span></span><br><span class="line">    <span class="type">int</span>[] dist = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">    Arrays.fill(dist, <span class="number">0x3f3f3f3f</span>);</span><br><span class="line">    <span class="comment">// boolean[] vis = new boolean[n];</span></span><br><span class="line">    dist[x] = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 使用「优先队列」存储所有可用于更新的点</span></span><br><span class="line">    <span class="comment">// 以 (点编号, 到起点的距离) 进行存储，优先弹出「最短距离」较小的点</span></span><br><span class="line">    PriorityQueue&lt;<span class="type">int</span>[]&gt; q = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;((a,b)-&gt;a[<span class="number">1</span>]-b[<span class="number">1</span>]);</span><br><span class="line">    q.add(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;x, <span class="number">0</span>&#125;);</span><br><span class="line">    <span class="keyword">while</span> (!q.isEmpty()) &#123;</span><br><span class="line">        <span class="comment">// 每次从「优先队列」中弹出</span></span><br><span class="line">        <span class="type">int</span>[] poll = q.poll();</span><br><span class="line">        <span class="type">int</span> <span class="variable">u</span> <span class="operator">=</span> poll[<span class="number">0</span>], step = poll[<span class="number">1</span>];</span><br><span class="line">        <span class="comment">// 如果弹出的点被标记「已更新」，则跳过</span></span><br><span class="line">        <span class="comment">// if (vis[u]) continue;</span></span><br><span class="line">        <span class="keyword">if</span> (dist[u] &lt;= step) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="comment">// 标记该点「已更新」，并使用该点更新其他点的「最短距离」</span></span><br><span class="line">        <span class="comment">// vis[u] = true;</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> head[u]; i != -<span class="number">1</span>; i = next[i]) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> e[i];</span><br><span class="line">            <span class="keyword">if</span> (dist[j] &lt;= dist[u] + w[i]) <span class="keyword">continue</span>;</span><br><span class="line">            dist[j] = dist[u] + w[i];</span><br><span class="line">            q.add(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;j, dist[j]&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dist;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度$O(mlogn)$，m为边数量，n为节点数量；</p>
+<p>空间复杂度$O(n+m)$</p>
+<h4 id="2-3-Bellman-Ford算法，适合有向图或无向图、负权边、单源最短路，可以判定负权环"><a href="#2-3-Bellman-Ford算法，适合有向图或无向图、负权边、单源最短路，可以判定负权环" class="headerlink" title="2.3 Bellman-Ford算法，适合有向图或无向图、负权边、单源最短路，可以判定负权环"></a>2.3 Bellman-Ford算法，适合有向图或无向图、负权边、单源最短路，可以判定负权环</h4><h5 id="适用范围：-2"><a href="#适用范围：-2" class="headerlink" title="适用范围："></a>适用范围：</h5><p>Bellman-Ford算法适用于包含负权边的图，并且能够检测图中是否存在负权环。相比于Dijkstra算法，Bellman-Ford更具有通用性，但由于其时间复杂度为O(V * E)（V为节点数，E为边数），在边数较大的情况下可能不如Dijkstra算法高效。</p>
+<ul>
+<li>适用于有向图或无向图。</li>
+<li>适用于边权重可能为负值的情况。</li>
+<li>可以检测图中是否存在负权环。</li>
+</ul>
+<h5 id="算法流程：-2"><a href="#算法流程：-2" class="headerlink" title="算法流程："></a>算法流程：</h5><ol>
+<li><p><strong>初始化：</strong> 设置源节点的最短路径为0，其他节点的最短路径为正无穷大。</p>
+</li>
+<li><p><strong>松弛操作：</strong> 对每条边进行松弛操作，通过比较源节点到达某个节点的当前最短路径和经过当前边到达该节点的路径的权重，更新最短路径信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for i from 1 to |V| - 1:</span><br><span class="line">    for each edge (u, v) in graph:</span><br><span class="line">        if dist[u] + weight(u, v) &lt; dist[v]:</span><br><span class="line">            dist[v] = dist[u] + weight(u, v)</span><br></pre></td></tr></table></figure>
+<p>其中，<code>dist[u]</code>表示从源节点到节点u的当前最短路径长度，<code>weight(u, v)</code>表示边(u, v)的权重。</p>
+</li>
+<li><p><strong>检测负权环：</strong> 经过上述操作，如果在第|V|次迭代中仍然可以进行松弛操作，说明存在负权环。这是因为在最短路径中，任意正常的路径至多经过|V|-1个节点。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for each edge (u, v) in graph:</span><br><span class="line">    if dist[u] + weight(u, v) &lt; dist[v]:</span><br><span class="line">        // 存在负权环</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>输出结果：</strong> 最终，<code>dist</code>数组中存储的就是源节点到各个节点的最短路径长度。</p>
+</li>
+</ol>
+<p>注意：如果图中存在负权环，Bellman-Ford算法会在第|V|次迭代中检测到，并标记这一情况。算法可能不会给出准确的最短路径长度，但可以指示存在负权环。</p>
+<h5 id="代码示例-2"><a href="#代码示例-2" class="headerlink" title="代码示例"></a>代码示例</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] bf(<span class="type">int</span>[][] edges, <span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="type">int</span>[] dist = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">    <span class="comment">// 起始先将所有的点标记为「距离为正无穷」, 只有起点最短距离为 0</span></span><br><span class="line">    Arrays.fill(dist, <span class="number">0x3f3f3f3f</span>);</span><br><span class="line">    dist[x] = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 有多少个点就迭代多少次</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">0</span>; k &lt; n; k++) &#123;</span><br><span class="line">        <span class="comment">// 每次都使用上一次迭代的结果，执行松弛操作</span></span><br><span class="line">        <span class="type">int</span>[] prev = dist.clone();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>[] e : edges) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> e[<span class="number">0</span>], b = e[<span class="number">1</span>], c = e[<span class="number">2</span>];</span><br><span class="line">            dist[b] = Math.min(dist[b], prev[a] + c);</span><br><span class="line">            dist[a] = Math.min(dist[a], prev[b] + c);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dist;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度$O(m*n)$，m为边数量，n为节点数量；</p>
+<p>空间复杂度$O(n+m)$</p>
+<h4 id="2-4-SPFA-Shortest-Path-Faster-Algorithm-，和BF算法适用范围一样"><a href="#2-4-SPFA-Shortest-Path-Faster-Algorithm-，和BF算法适用范围一样" class="headerlink" title="2.4 SPFA(Shortest Path Faster Algorithm)，和BF算法适用范围一样"></a>2.4 SPFA(Shortest Path Faster Algorithm)，和BF算法适用范围一样</h4><h5 id="适用范围：-3"><a href="#适用范围：-3" class="headerlink" title="适用范围："></a>适用范围：</h5><p>SPFA算法适用于包含负权边的图，类似于Bellman-Ford算法，但相对于Bellman-Ford，SPFA使用了队列优化，使得在一般情况下能够更快地收敛。与Bellman-Ford一样，SPFA也能够检测图中是否存在负权环。</p>
+<ul>
+<li>适用于有向图或无向图。</li>
+<li>适用于边权重可能为负值的情况。</li>
+<li>可以检测图中是否存在负权环。</li>
+</ul>
+<h5 id="算法流程：-3"><a href="#算法流程：-3" class="headerlink" title="算法流程："></a>算法流程：</h5><ol>
+<li><p><strong>初始化：</strong> 设置源节点的最短路径为0，其他节点的最短路径为正无穷大。将源节点加入队列。</p>
+</li>
+<li><p><strong>松弛操作：</strong> 从队列中取出一个节点，对其所有相邻节点进行松弛操作，通过比较源节点到达某个节点的当前最短路径和经过当前边到达该节点的路径的权重，更新最短路径信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">while 队列不为空:</span><br><span class="line">    取出队首节点 u</span><br><span class="line">    for each edge (u, v) in graph:</span><br><span class="line">        if dist[u] + weight(u, v) &lt; dist[v]:</span><br><span class="line">            dist[v] = dist[u] + weight(u, v)</span><br><span class="line">            if v 不在队列中:</span><br><span class="line">                将节点 v 加入队列</span><br></pre></td></tr></table></figure>
+<p>其中，<code>dist[u]</code>表示从源节点到节点u的当前最短路径长度，<code>weight(u, v)</code>表示边(u, v)的权重。</p>
+</li>
+<li><p><strong>检测负权环：</strong> 如果在松弛操作中发现某个节点被更新次数超过了|V|次，则说明存在负权环。</p>
+</li>
+<li><p><strong>输出结果：</strong> 最终，<code>dist</code>数组中存储的就是源节点到各个节点的最短路径长度。</p>
+</li>
+</ol>
+<p>SPFA算法通过使用队列优化，在一般情况下可以比较高效地求解带有负权边的图的最短路径问题。然而，在存在负权环的情况下，SPFA会陷入无限循环，因此对于包含负权环的图，SPFA可能不会给出准确的最短路径。</p>
+<h5 id="代码示例-3"><a href="#代码示例-3" class="headerlink" title="代码示例"></a>代码示例</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] spfa(<span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="type">int</span>[] dist = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">    <span class="type">boolean</span>[] vis = <span class="keyword">new</span> <span class="title class_">boolean</span>[n];</span><br><span class="line">    <span class="comment">// 起始先将所有的点标记为「未入队」和「距离为正无穷」</span></span><br><span class="line">    Arrays.fill(dist, INF);</span><br><span class="line">    <span class="comment">// 只有起点最短距离为 0</span></span><br><span class="line">    dist[x] = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 使用「双端队列」存储，存储的是点编号</span></span><br><span class="line">    Deque&lt;Integer&gt; d = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">    <span class="comment">// 将「源点/起点」进行入队，并标记「已入队」</span></span><br><span class="line">    d.addLast(x);</span><br><span class="line">    vis[x] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">while</span> (!d.isEmpty()) &#123;</span><br><span class="line">        <span class="comment">// 每次从「双端队列」中取出，并标记「未入队」</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">u</span> <span class="operator">=</span> d.pollFirst();</span><br><span class="line">        vis[u] = <span class="literal">false</span>;</span><br><span class="line">        <span class="comment">// 尝试使用该点，更新其他点的最短距离</span></span><br><span class="line">        <span class="comment">// 如果更新的点，本身「未入队」则加入队列中，并标记「已入队」</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> he[u]; i != -<span class="number">1</span>; i = ne[i]) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> e[i];</span><br><span class="line">            <span class="keyword">if</span> (dist[j] &lt;= dist[u] + w[i]) <span class="keyword">continue</span>;</span><br><span class="line">            dist[j] = dist[u] + w[i];</span><br><span class="line">            <span class="keyword">if</span> (vis[j]) <span class="keyword">continue</span>;</span><br><span class="line">            d.addLast(j);</span><br><span class="line">            vis[j] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dist;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-5-Johnson算法"><a href="#2-5-Johnson算法" class="headerlink" title="2.5 Johnson算法"></a>2.5 Johnson算法</h4><p><strong>Johnson算法</strong></p>
+<h5 id="适用范围：-4"><a href="#适用范围：-4" class="headerlink" title="适用范围："></a>适用范围：</h5><p>Johnson算法适用于解决带有负权边的图中的所有节点对之间的最短路径问题，包括检测负权环。Johnson算法结合了Dijkstra算法和Bellman-Ford算法的优势，通过对图进行转换来处理负权边。</p>
+<ul>
+<li>适用于有向图或无向图。</li>
+<li>适用于边权重可能为负值的情况。</li>
+<li>可以检测图中是否存在负权环。</li>
+</ul>
+<h5 id="算法流程：-4"><a href="#算法流程：-4" class="headerlink" title="算法流程："></a>算法流程：</h5><ol>
+<li><p><strong>图的转换：</strong> 添加一个新的节点（称为超级节点），将新节点与图中的每个节点之间添加一条权重为0的边。这样，新的图中不再包含负权边。</p>
+</li>
+<li><p><strong>运行Bellman-Ford算法：</strong> 使用Bellman-Ford算法计算新图中的超级节点到所有其他节点的最短路径。如果检测到负权环，算法结束，因为对于包含负权环的图，无法得到准确的最短路径。</p>
+</li>
+<li><p><strong>重新赋权：</strong> 对原图中的每条边进行重新赋权，确保边的权重变为原权重加上源节点到目标节点的最短路径长度之差。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for each edge (u, v) in graph:</span><br><span class="line">    weight(u, v) = weight(u, v) + dist[u] - dist[v]</span><br></pre></td></tr></table></figure>
+<p>其中，<code>dist[u]</code>和<code>dist[v]</code>分别是超级节点到节点u和v的最短路径长度。</p>
+</li>
+<li><p><strong>运行Dijkstra算法：</strong> 对新图中的每个节点运行Dijkstra算法，计算该节点到所有其他节点的最短路径。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for each node u:</span><br><span class="line">    run Dijkstra algorithm starting from node u to compute dist[u] to all other nodes</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>恢复最短路径：</strong> 将得到的最短路径信息进行还原，考虑超级节点的存在和之前的转换。</p>
+</li>
+<li><p><strong>输出结果：</strong> 最终，得到所有节点对之间的最短路径。</p>
+</li>
+</ol>
+<p>Johnson算法通过将图进行巧妙的转换，综合使用Bellman-Ford算法和Dijkstra算法，能够有效地解决带有负权边的图中的最短路径问题，并且能够检测负权环的存在。</p>
+
+      <div class="tags">
+          <a href="/tags/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" rel="tag"><i class="ic i-tag"></i> 算法模板</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2024-04-08 15:49:57" itemprop="dateModified" datetime="2024-04-08T15:49:57+08:00">2024-04-08</time>
+  </span>
+  <span id="2023/12/24/各类最短路模板/" class="item leancloud_visitors" data-flag-title="各类最短路模板" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>Foufor Past <i class="ic i-at"><em>@</em></i>FP 的一亩三分地
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://fouforpast.github.io/2023/12/24/%E5%90%84%E7%B1%BB%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A8%A1%E6%9D%BF/" title="各类最短路模板">https://fouforpast.github.io/2023/12/24/各类最短路模板/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/12/17/%E5%BF%AB%E9%80%9F%E9%80%89%E6%8B%A9%E6%A8%A1%E6%9D%BF/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicitcxhpij20zk0m8hdt.jpg" title="快速选择和排序模板">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>快速选择和排序模板</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2024/01/12/shutdown3%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%85%B3%E9%97%AD%E8%BF%9E%E6%8E%A5%E7%9A%84%E5%AE%9E%E6%88%98%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipevarprfj20zk0m8npd.jpg" title="shutdown3种方式关闭连接的实战抓包分析">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>shutdown3种方式关闭连接的实战抓包分析</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AD%98%E5%9B%BE%E6%96%B9%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">1. 存图方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%EF%BC%88%E7%A8%A0%E5%AF%86%E5%9B%BE%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 邻接矩阵（稠密图）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E9%82%BB%E6%8E%A5%E8%A1%A8%EF%BC%88%E7%A8%80%E7%96%8F%E5%9B%BE%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 邻接表（稀疏图）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-%E4%BA%8C%E7%BB%B4%E5%88%97%E8%A1%A8"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 二维列表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">2. 最短路算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-Floyd%E7%AE%97%E6%B3%95%EF%BC%88Floyd-Warshall%E7%AE%97%E6%B3%95%EF%BC%89%EF%BC%8C%E9%80%82%E5%90%88%E6%9C%89%E5%90%91%E5%9B%BE%E6%88%96%E6%97%A0%E5%90%91%E5%9B%BE%E3%80%81%E8%B4%9F%E6%9D%83%E8%BE%B9%E3%80%81%E5%A4%9A%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%88%A4%E5%AE%9A%E8%B4%9F%E6%9D%83%E7%8E%AF"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 Floyd算法（Floyd-Warshall算法），适合有向图或无向图、负权边、多源最短路，可以判定负权环</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E8%8C%83%E5%9B%B4%EF%BC%9A"><span class="toc-number">2.1.1.</span> <span class="toc-text">适用范围：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B%EF%BC%9A"><span class="toc-number">2.1.2.</span> <span class="toc-text">算法流程：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.1.3.</span> <span class="toc-text">代码示例</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-Dijkstra%E7%AE%97%E6%B3%95%EF%BC%8C%E9%80%82%E5%90%88%E6%9C%89%E5%90%91%E5%9B%BE%E3%80%81%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%8C%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%EF%BC%8C%E8%A6%81%E6%B1%82%E6%97%A0%E8%B4%9F%E6%9D%83%E8%BE%B9%E5%92%8C%E8%B4%9F%E6%9D%83%E7%8E%AF"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 Dijkstra算法，适合有向图、无向图，单源最短路，要求无负权边和负权环</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E8%8C%83%E5%9B%B4%EF%BC%9A-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">适用范围：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B%EF%BC%9A-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">算法流程：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B-1"><span class="toc-number">2.2.3.</span> <span class="toc-text">代码示例</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-Bellman-Ford%E7%AE%97%E6%B3%95%EF%BC%8C%E9%80%82%E5%90%88%E6%9C%89%E5%90%91%E5%9B%BE%E6%88%96%E6%97%A0%E5%90%91%E5%9B%BE%E3%80%81%E8%B4%9F%E6%9D%83%E8%BE%B9%E3%80%81%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%88%A4%E5%AE%9A%E8%B4%9F%E6%9D%83%E7%8E%AF"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 Bellman-Ford算法，适合有向图或无向图、负权边、单源最短路，可以判定负权环</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E8%8C%83%E5%9B%B4%EF%BC%9A-2"><span class="toc-number">2.3.1.</span> <span class="toc-text">适用范围：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B%EF%BC%9A-2"><span class="toc-number">2.3.2.</span> <span class="toc-text">算法流程：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B-2"><span class="toc-number">2.3.3.</span> <span class="toc-text">代码示例</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-SPFA-Shortest-Path-Faster-Algorithm-%EF%BC%8C%E5%92%8CBF%E7%AE%97%E6%B3%95%E9%80%82%E7%94%A8%E8%8C%83%E5%9B%B4%E4%B8%80%E6%A0%B7"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 SPFA(Shortest Path Faster Algorithm)，和BF算法适用范围一样</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E8%8C%83%E5%9B%B4%EF%BC%9A-3"><span class="toc-number">2.4.1.</span> <span class="toc-text">适用范围：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B%EF%BC%9A-3"><span class="toc-number">2.4.2.</span> <span class="toc-text">算法流程：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B-3"><span class="toc-number">2.4.3.</span> <span class="toc-text">代码示例</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-Johnson%E7%AE%97%E6%B3%95"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 Johnson算法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E8%8C%83%E5%9B%B4%EF%BC%9A-4"><span class="toc-number">2.5.1.</span> <span class="toc-text">适用范围：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B%EF%BC%9A-4"><span class="toc-number">2.5.2.</span> <span class="toc-text">算法流程：</span></a></li></ol></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Foufor Past"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Foufor Past</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">25</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">2</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">19</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/12/17/%E5%BF%AB%E9%80%9F%E9%80%89%E6%8B%A9%E6%A8%A1%E6%9D%BF/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2024/01/12/shutdown3%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%85%B3%E9%97%AD%E8%BF%9E%E6%8E%A5%E7%9A%84%E5%AE%9E%E6%88%98%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Foufor Past @ Foufor Past</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/12/24/各类最短路模板/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

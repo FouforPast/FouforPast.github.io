@@ -1,0 +1,412 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="FP的一亩三分地" href="https://fouforpast.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="FP的一亩三分地" href="https://fouforpast.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="FP的一亩三分地" href="https://fouforpast.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="算法" />
+
+
+<link rel="canonical" href="https://fouforpast.github.io/2023/12/02/%E5%8F%8C%E6%8C%87%E9%92%88/">
+
+
+
+  <title>
+双指针 |
+Foufor Past = FP 的一亩三分地</title>
+<meta name="generator" content="Hexo 7.0.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">双指针
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-12-02 21:26:21">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-12-02T21:26:21+08:00">2023-12-02</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Foufor Past</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giph4lm9i7j20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicli3sbvtj20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipewf5l51j20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclh0m9pdj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giciukx8a7j20zk0m8aio.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicitzannuj20zk0m8b29.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://fouforpast.github.io/2023/12/02/%E5%8F%8C%E6%8C%87%E9%92%88/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Foufor Past">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="FP 的一亩三分地">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <p>双指针的原理与题单</p>
+<span id="more"></span>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>双指针，本质上是从$O(n^2)$的搜索空间中排除掉不可能的范围，缩减到$O(n)$的复杂度。</p>
+<p>参考：<span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy90d28tc3VtLWlpLWlucHV0LWFycmF5LWlzLXNvcnRlZC9zb2x1dGlvbnMvODc5MTkveWktemhhbmctdHUtZ2FvLXN1LW5pLW9uLWRlLXNodWFuZy16aGktemhlbi1qaWUtZmEv">167. 两数之和 II - 输入有序数组 - 力扣（LeetCode）</span></p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy9jb3VudC1wYWlycy13aG9zZS1zdW0taXMtbGVzcy10aGFuLXRhcmdldC9kZXNjcmlwdGlvbi8=">2824. 统计和小于目标的下标对数目 - 力扣（LeetCode）</span></p>
+<p>这一题中，我们既可以让i每次循环加1，j随之变化；也可以让j每次循环减1，i随之变化。</p>
+<h6 id="第一种思路：i每次循环加1，j随之变化"><a href="#第一种思路：i每次循环加1，j随之变化" class="headerlink" title="第一种思路：i每次循环加1，j随之变化"></a>第一种思路：i每次循环加1，j随之变化</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countPairs</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nums.sort()</span><br><span class="line">        j = <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 遍历第一个指针，寻找满足k&gt;i且nums[i]+nums[k]&lt;target的k</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums) - <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 1.由于nums是递增的，如果nums[i] + nums[i + 1] &gt;= target，</span></span><br><span class="line">            <span class="comment">#   后面都不会存在满足条件的k了，跳出循环；</span></span><br><span class="line">            <span class="comment"># 2.如果i==j,上个循环结束i=j-1且nums[i]+nums[j]&lt;target,</span></span><br><span class="line">            <span class="comment">#   nums[i]+nums[j+1]&gt;=target，所以nums[j]+nums[j+1]&gt;=target,后面不存在满足条件的k；</span></span><br><span class="line">            <span class="comment">#   i&gt;j时说明上个循环就不存在满足条件的k了</span></span><br><span class="line">            <span class="keyword">if</span> nums[i] + nums[i + <span class="number">1</span>] &gt;= target <span class="keyword">or</span> i &gt;= j:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="comment"># 我们要让j随着i变化，j是递减的，随着j的递减，nums[i] + nums[j]会变小，</span></span><br><span class="line">            <span class="comment"># 所以当nums[i] + nums[j]&gt;=target时要一直循环，</span></span><br><span class="line">            <span class="comment"># 保证可以找到nums[i] + nums[j] &lt; target的临界点，这样所有小于等于j大于i的下标都满足条件</span></span><br><span class="line">            <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> nums[i] + nums[j] &gt;= target:</span><br><span class="line">                j -= <span class="number">1</span></span><br><span class="line">            ans += j - i</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<h6 id="第二种思路：j每次循环减1，i随之变化"><a href="#第二种思路：j每次循环减1，i随之变化" class="headerlink" title="第二种思路：j每次循环减1，i随之变化"></a>第二种思路：j每次循环减1，i随之变化</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countPairs</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nums.sort()</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 遍历第二个指针,寻找满足k&lt;j且nums[k]+nums[j]&lt;target的k</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums) - <span class="number">1</span>, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 1.这里不会有提前退出的机制，因为j是循环递减的，nums[j]也是循环递减的，</span></span><br><span class="line">            <span class="comment">#   因此循环次数越多，越容易找到满足条件的i</span></span><br><span class="line">            <span class="comment"># 2.如果i&gt;=j，说明所有小于j的下标都是满足要求的，不能退出，此时满足条件的下标一共i个</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 我们要让i随着j变化，i是递增的，随着i的递减，nums[i] + nums[j]会变大，</span></span><br><span class="line">            <span class="comment"># 所以当nums[i] + nums[j]&lt;target时要一直循环，</span></span><br><span class="line">            <span class="comment"># 保证可以找到nums[i] + nums[j] &gt;= target的临界点，这样所有小于i的下标都满足条件</span></span><br><span class="line">            <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> nums[i] + nums[j] &lt; target:</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">            <span class="comment"># i&gt;=j和i&lt;j的情况合并之后，ans+=min(i,j)</span></span><br><span class="line">            ans += <span class="built_in">min</span>(i, j)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<p>另外，如果求的是$abs(nums[i]-nums[j])$大于或者小于target的数量，初始时要设置为<code>i=0,j=1</code>或<code>i=len(nums)-2,j=len(nums)-1</code></p>
+<p>双指针题单：</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy90d28tc3VtLWlpLWlucHV0LWFycmF5LWlzLXNvcnRlZC8=">167. 两数之和 II - 输入有序数组 - 力扣（LeetCode）</span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy8zc3VtLw==">15. 三数之和 - 力扣（LeetCode）</span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy80c3VtL2Rlc2NyaXB0aW9uLw==">18. 四数之和 - 力扣（LeetCode）</span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy92YWxpZC10cmlhbmdsZS1udW1iZXIvZGVzY3JpcHRpb24v">611. 有效三角形的个数 - 力扣（LeetCode）</span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy8zc3VtLWNsb3Nlc3QvZGVzY3JpcHRpb24v">16. 最接近的三数之和 - 力扣（LeetCode）</span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy9jb3VudC1wYWlycy13aG9zZS1zdW0taXMtbGVzcy10aGFuLXRhcmdldC9kZXNjcmlwdGlvbi8=">2824. 统计和小于目标的下标对数目 - 力扣（LeetCode）</span></p>
+<p>缩减搜索范围题单：</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy9zZWFyY2gtYS0yZC1tYXRyaXgtaWkvc29sdXRpb25zLzIzNjE0ODcvMjQwLXNvdS1zdW8tZXItd2VpLWp1LXpoZW4taWl0YW4teGluLXFpbi03bXRmLw==">240. 搜索二维矩阵 II - 力扣（LeetCode）</span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS5jbi9wcm9ibGVtcy9jb250YWluZXItd2l0aC1tb3N0LXdhdGVyL3NvbHV0aW9ucy8xMTQ5MS9jb250YWluZXItd2l0aC1tb3N0LXdhdGVyLXNodWFuZy16aGktemhlbi1mYS15aS1kby8=">11. 盛最多水的容器 - 力扣（LeetCode）</span></p>
+
+      <div class="tags">
+          <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="ic i-tag"></i> 算法</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2024-04-08 15:49:57" itemprop="dateModified" datetime="2024-04-08T15:49:57+08:00">2024-04-08</time>
+  </span>
+  <span id="2023/12/02/双指针/" class="item leancloud_visitors" data-flag-title="双指针" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>Foufor Past <i class="ic i-at"><em>@</em></i>FP 的一亩三分地
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://fouforpast.github.io/2023/12/02/%E5%8F%8C%E6%8C%87%E9%92%88/" title="双指针">https://fouforpast.github.io/2023/12/02/双指针/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/11/23/%E5%A0%86%E6%A8%A1%E6%9D%BF/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giciub8ja1j20zk0m81ky.jpg" title="堆模板">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>堆模板</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/12/04/%E9%A2%98%E5%8D%95/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclhtuo6nj20zk0m8ttm.jpg" title="题单">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>题单</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%A7%8D%E6%80%9D%E8%B7%AF%EF%BC%9Ai%E6%AF%8F%E6%AC%A1%E5%BE%AA%E7%8E%AF%E5%8A%A01%EF%BC%8Cj%E9%9A%8F%E4%B9%8B%E5%8F%98%E5%8C%96"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">第一种思路：i每次循环加1，j随之变化</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%80%9D%E8%B7%AF%EF%BC%9Aj%E6%AF%8F%E6%AC%A1%E5%BE%AA%E7%8E%AF%E5%87%8F1%EF%BC%8Ci%E9%9A%8F%E4%B9%8B%E5%8F%98%E5%8C%96"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">第二种思路：j每次循环减1，i随之变化</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Foufor Past"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Foufor Past</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">25</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">2</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">19</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/11/23/%E5%A0%86%E6%A8%A1%E6%9D%BF/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/12/04/%E9%A2%98%E5%8D%95/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Foufor Past @ Foufor Past</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/12/02/双指针/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

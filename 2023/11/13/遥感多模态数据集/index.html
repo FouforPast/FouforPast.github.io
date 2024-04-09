@@ -1,0 +1,811 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="FP的一亩三分地" href="https://fouforpast.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="FP的一亩三分地" href="https://fouforpast.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="FP的一亩三分地" href="https://fouforpast.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="遥感,多模态,数据集" />
+
+
+<link rel="canonical" href="https://fouforpast.github.io/2023/11/13/%E9%81%A5%E6%84%9F%E5%A4%9A%E6%A8%A1%E6%80%81%E6%95%B0%E6%8D%AE%E9%9B%86/">
+
+
+
+  <title>
+遥感多模态数据集 |
+Foufor Past = FP 的一亩三分地</title>
+<meta name="generator" content="Hexo 7.0.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">遥感多模态数据集
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-11-13 17:23:08">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-11-13T17:23:08+08:00">2023-11-13</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Foufor Past</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicis3attqj20zk0m8k7l.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclip4jbpj20zk0m87cv.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giciukx8a7j20zk0m8aio.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipet4bz0yj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giciusoyjnj219g0u0x56.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giph4fomxoj20zk0m8axp.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://fouforpast.github.io/2023/11/13/%E9%81%A5%E6%84%9F%E5%A4%9A%E6%A8%A1%E6%80%81%E6%95%B0%E6%8D%AE%E9%9B%86/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Foufor Past">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="FP 的一亩三分地">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <span id="more"></span>
+<h3 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h3><h4 id="optical-dsm"><a href="#optical-dsm" class="headerlink" title="optical-dsm"></a>optical-dsm</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数量</th>
+<th style="text-align:center">平均尺寸</th>
+<th style="text-align:center">空间分辨率</th>
+<th style="text-align:center">模态</th>
+<th style="text-align:center">数据集</th>
+<th style="text-align:center">链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">38</td>
+<td style="text-align:center">6 000×6 000</td>
+<td style="text-align:center">5cm</td>
+<td style="text-align:center">RGB、DSM、IRRG、RGBIR、归一化DSM</td>
+<td style="text-align:center">Potsdam</td>
+<td style="text-align:center"><span class="exturl" data-url="aHR0cHM6Ly93d3cuaXNwcnMub3JnL2VkdWNhdGlvbi9iZW5jaG1hcmtzL1VyYmFuU2VtTGFiLzJkLXNlbS1sYWJlbC1wb3RzZGFtLmFzcHg=">link</span></td>
+</tr>
+<tr>
+<td style="text-align:center">33</td>
+<td style="text-align:center">2 494×2 046</td>
+<td style="text-align:center">9cm</td>
+<td style="text-align:center">DSM、IRRG</td>
+<td style="text-align:center">Vaihingen</td>
+<td style="text-align:center"><span class="exturl" data-url="aHR0cHM6Ly93d3cuaXNwcnMub3JnL2VkdWNhdGlvbi9iZW5jaG1hcmtzL1VyYmFuU2VtTGFiLzJkLXNlbS1sYWJlbC12YWloaW5nZW4uYXNweA==">link</span></td>
+</tr>
+<tr>
+<td style="text-align:center">10800</td>
+<td style="text-align:center">512×512</td>
+<td style="text-align:center">1米</td>
+<td style="text-align:center">RGB、点云、DSM</td>
+<td style="text-align:center">N3C-California</td>
+<td style="text-align:center"><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FtYmVySGVuL1dIVS1PUFQtU0FSLWRhdGFzZXQ=">link</span></td>
+</tr>
+<tr>
+<td style="text-align:center">400+50</td>
+<td style="text-align:center">256×256</td>
+<td style="text-align:center">10米</td>
+<td style="text-align:center">MS、SAR、DEM</td>
+<td style="text-align:center">DKDFN</td>
+<td style="text-align:center"><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0xhdXJhQ2hvdy9IdW5hbk11bHRpbW9kYWxEYXRhc2V0">link</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="optical-sar"><a href="#optical-sar" class="headerlink" title="optical-sar"></a>optical-sar</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数量</th>
+<th style="text-align:center">平均尺寸</th>
+<th style="text-align:center">空间分辨率</th>
+<th style="text-align:center">模态</th>
+<th style="text-align:center">数据集</th>
+<th style="text-align:center">链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">100</td>
+<td style="text-align:center">5556×3704</td>
+<td style="text-align:center">5米</td>
+<td style="text-align:center">RGBIR、SAR</td>
+<td style="text-align:center">WHU-OPT-SAR</td>
+<td style="text-align:center"><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FtYmVySGVuL1dIVS1PUFQtU0FSLWRhdGFzZXQ=">link</span></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1m</td>
+<td style="text-align:center">RGB、SAR</td>
+<td style="text-align:center">DDHRNet</td>
+<td style="text-align:center"><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1hELU1HL0RESFJOZXQ=">link</span></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">900×900</td>
+<td style="text-align:center">0.5米</td>
+<td style="text-align:center">RGBIR、SAR</td>
+<td style="text-align:center">MSAW</td>
+<td style="text-align:center"><span class="exturl" data-url="aHR0cHM6Ly9zcGFjZW5ldC5haS9zbjYtY2hhbGxlbmdlLw==">link</span></td>
+</tr>
+<tr>
+<td style="text-align:center">400+50</td>
+<td style="text-align:center">256×256</td>
+<td style="text-align:center">10米</td>
+<td style="text-align:center">MS、SAR、DEM</td>
+<td style="text-align:center">DKDFN</td>
+<td style="text-align:center"><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0xhdXJhQ2hvdy9IdW5hbk11bHRpbW9kYWxEYXRhc2V0">link</span></td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">HS、SAR</td>
+<td style="text-align:center">HS-SAR Berlin</td>
+<td style="text-align:center"><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RhbmZlbmdob25nL0lTUFJTX1MyRkw=">link</span></td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">HS、SAR、DSM</td>
+<td style="text-align:center">HS-SAR-DSM Augsburg</td>
+<td style="text-align:center"><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RhbmZlbmdob25nL0lTUFJTX1MyRkw=">link</span></td>
+</tr>
+<tr>
+<td style="text-align:center">180748</td>
+<td style="text-align:center">256×256</td>
+<td style="text-align:center">MS10米，SAR20米</td>
+<td style="text-align:center">MS、SAR</td>
+<td style="text-align:center">SEN12MS</td>
+<td style="text-align:center"><span class="exturl" data-url="aHR0cHM6Ly9tZWRpYXR1bS51Yi50dW0uZGUvMTQ3NDAwMA==">link</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="optical-lidar"><a href="#optical-lidar" class="headerlink" title="optical-lidar"></a>optical-lidar</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数量</th>
+<th style="text-align:center">平均尺寸</th>
+<th style="text-align:center">空间分辨率</th>
+<th style="text-align:center">模态</th>
+<th style="text-align:center">数据集</th>
+<th style="text-align:center">链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">325 × 220</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">HS、LiDAR</td>
+<td style="text-align:center">MUUFLGulfport</td>
+<td style="text-align:center"><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0dhdG9yU2Vuc2UvTVVVRkxHdWxmcG9ydA==">link</span></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">600×166</td>
+<td style="text-align:center">1米</td>
+<td style="text-align:center">HS、LiDAR</td>
+<td style="text-align:center">Trento</td>
+<td style="text-align:center"><span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2RyaXZlL2ZvbGRlcnMvMUhLM2VMM2xvSTRXZC1SRnIxcHNMTG1WTFRWRExjdEdk">link</span></td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">349 × 1905</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">HS、LiDAR</td>
+<td style="text-align:center">Houston2013</td>
+<td style="text-align:center"><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RhbmZlbmdob25nL0lFRUVfR1JTTF9FbmROZXQ=">link</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="hs-ms"><a href="#hs-ms" class="headerlink" title="hs-ms"></a>hs-ms</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数量</th>
+<th style="text-align:center">平均尺寸</th>
+<th style="text-align:center">空间分辨率</th>
+<th style="text-align:center">模态</th>
+<th style="text-align:center">数据集</th>
+<th style="text-align:center">链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">HS、MS</td>
+<td style="text-align:center">HS-MS Houston2013</td>
+<td style="text-align:center"><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RhbmZlbmdob25nL0lTUFJTX1MyRkw=">link</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>收集不详尽，可能存在错误的地方，仅供参考。</p>
+<h2 id="optical-dsm-1"><a href="#optical-dsm-1" class="headerlink" title="optical-dsm"></a>optical-dsm</h2><h3 id="Potsdam数据集"><a href="#Potsdam数据集" class="headerlink" title="Potsdam数据集"></a>Potsdam数据集</h3><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuaXNwcnMub3JnL2VkdWNhdGlvbi9iZW5jaG1hcmtzL1VyYmFuU2VtTGFiLzJkLXNlbS1sYWJlbC1wb3RzZGFtLmFzcHg=">2D Semantic Labeling Contest - Potsdam (isprs.org)</span></p>
+<p>示例：</p>
+<p><img data-src="https://img-blog.csdnimg.cn/img_convert/74d50746db2e0f718ff9bc358b1b0582.png" alt="img"></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数量</th>
+<th style="text-align:center">尺寸</th>
+<th style="text-align:center">空间分辨率</th>
+<th style="text-align:center">模态</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">38</td>
+<td style="text-align:center">6 000×6 000像素</td>
+<td style="text-align:center">5cm</td>
+<td style="text-align:center">RGB、DSM、IRRG、RGBIR、归一化DSM</td>
+<td style="text-align:center">7_10号图像存在较多错误标注</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>类别</strong>：不透光表面、建筑物、低矮植被、树木、汽车和背景</p>
+<h3 id="Vaihingen数据集"><a href="#Vaihingen数据集" class="headerlink" title="Vaihingen数据集"></a>Vaihingen数据集</h3><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuaXNwcnMub3JnL2VkdWNhdGlvbi9iZW5jaG1hcmtzL1VyYmFuU2VtTGFiLzJkLXNlbS1sYWJlbC12YWloaW5nZW4uYXNweA==">2D Semantic Label. - Vaihingen (isprs.org)</span></p>
+<p>示例：<br><img data-src="https://img-blog.csdnimg.cn/direct/e7354c890810474fa50d5e1b8589a699.png" alt="在这里插入图片描述"></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数量</th>
+<th style="text-align:center">平均尺寸</th>
+<th style="text-align:center">空间分辨率</th>
+<th style="text-align:center">模态</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">33</td>
+<td style="text-align:center">2 494×2 046像素</td>
+<td style="text-align:center">9cm</td>
+<td style="text-align:center">DSM、IRRG</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>类别</strong>：不透光表面、建筑物、低矮植被、树木、汽车和背景</p>
+<h3 id="N3C-California"><a href="#N3C-California" class="headerlink" title="N3C-California"></a>N3C-California</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3d5bXFxcS9JS0ROZXQtcHl0b3JjaA==">IKDNet-pytorch</span></p>
+<p><img data-src="https://img-blog.csdnimg.cn/direct/6643678b761e44e1ad32f5bb3ddcf5f2.png" alt="外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传"></p>
+<p>包含航空、点云和DSM图像，是一个专门为光学-点云多模态学习提出的数据集</p>
+<p><img data-src="https://img-blog.csdnimg.cn/img_convert/b7b047cd0e2d2ccd64de15fe39e65097.png" alt="image-20231121152004075"></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数量</th>
+<th style="text-align:center">裁剪尺寸</th>
+<th style="text-align:center">空间分辨率</th>
+<th style="text-align:center">模态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">10800</td>
+<td style="text-align:center">512×512像素</td>
+<td style="text-align:center">1米</td>
+<td style="text-align:center">RGB、点云、DSM</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>类别</strong>：ground、tree、building、other</p>
+<h3 id="DKDFN"><a href="#DKDFN" class="headerlink" title="DKDFN"></a>DKDFN</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0xhdXJhQ2hvdy9IdW5hbk11bHRpbW9kYWxEYXRhc2V0">HunanMultimodalDataset</span></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数量</th>
+<th style="text-align:center">裁剪尺寸</th>
+<th style="text-align:center">空间分辨率</th>
+<th style="text-align:center">模态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">400+50</td>
+<td style="text-align:center">256×256像素</td>
+<td style="text-align:center">10米</td>
+<td style="text-align:center">MS、SAR、DEM</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img data-src="https://img-blog.csdnimg.cn/direct/cb57dc8910fd49fdb34947957815ee7b.png" alt="外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传"></p>
+<p>所有数据都被上采样为10m</p>
+<p><strong>类别</strong>：building, road, farmland, water, greenery<br><img data-src="https://img-blog.csdnimg.cn/img_convert/c64f37e2f98e6f4a4339cd684223bfe6.png" alt="image-20240307175902078"></p>
+<h2 id="optical-sar-1"><a href="#optical-sar-1" class="headerlink" title="optical-sar"></a>optical-sar</h2><h3 id="WHU-OPT-SAR数据集"><a href="#WHU-OPT-SAR数据集" class="headerlink" title="WHU-OPT-SAR数据集"></a>WHU-OPT-SAR数据集</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FtYmVySGVuL1dIVS1PUFQtU0FSLWRhdGFzZXQ=">WHU-OPT-SAR-dataset</span></p>
+<p><img data-src="https://img-blog.csdnimg.cn/direct/dea5137468b7417d8e386c48692d90b3.png" alt="在这里插入图片描述"></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数量</th>
+<th style="text-align:center">平均尺寸</th>
+<th style="text-align:center">空间分辨率</th>
+<th style="text-align:center">模态</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">100</td>
+<td style="text-align:center">5556×3704像素</td>
+<td style="text-align:center">5米</td>
+<td style="text-align:center">RGBIR、SAR</td>
+<td style="text-align:center">该数据集由GF1和GF3采集自湖北省</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>类别</strong>：农田、城市、村庄、水域、森林、道路和其他</p>
+<h3 id="DDHRNet数据集"><a href="#DDHRNet数据集" class="headerlink" title="DDHRNet数据集"></a>DDHRNet数据集</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1hELU1HL0RESFJOZXQ=">https://github.com/XD-MG/DDHRNet</span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuc2NpZW5jZWRpcmVjdC5jb20vc2NpZW5jZS9hcnRpY2xlL3BpaS9TMTU2OTg0MzIyMjAwMDk4WD92aWElM0RpaHVi">A dual-stream high resolution network: Deep fusion of GF-2 and GF-3 data for land cover classification - ScienceDirect</span></p>
+<p><img data-src="https://img-blog.csdnimg.cn/direct/76b43abb79e84025971870b08a417dcf.png" alt="在这里插入图片描述"></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数量</th>
+<th style="text-align:center">裁剪尺寸</th>
+<th style="text-align:center">空间分辨率</th>
+<th style="text-align:center">模态</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center">\</td>
+<td style="text-align:center">1m</td>
+<td style="text-align:center">光学、SAR</td>
+<td style="text-align:center">来自GF2、GF3，西安、东营、浦项</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img data-src="https://img-blog.csdnimg.cn/img_convert/d4a34e5e8ce4ff79b983d24b7c84d4ac.png" alt></p>
+<p><strong>类别</strong>：建筑物、道路、农田、水域、植被</p>
+<h3 id="MSAW-数据集"><a href="#MSAW-数据集" class="headerlink" title="MSAW 数据集"></a>MSAW 数据集</h3><p><span class="exturl" data-url="aHR0cHM6Ly9zcGFjZW5ldC5haS9zbjYtY2hhbGxlbmdlLw==">Multi-Sensor All-Weather Mapping (spacenet.ai)</span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIzNTg5Nzc1L2FydGljbGUvZGV0YWlscy84MzUwODQyOQ==">SpaceNet遥感数据集下载及数据集说明_数据集spacenet下载-CSDN博客</span></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数量</th>
+<th style="text-align:center">裁剪尺寸</th>
+<th style="text-align:center">空间分辨率</th>
+<th style="text-align:center">模态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">900×900像素</td>
+<td style="text-align:center">0.5米</td>
+<td style="text-align:center">RGBIR、SAR</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img data-src="https://img-blog.csdnimg.cn/direct/75a70468d364417e9dfab3c31cad8489.png" alt="在这里插入图片描述"></p>
+<p><strong>类别</strong>：建筑物和其他</p>
+<h3 id="HS-SAR-Berlin数据集"><a href="#HS-SAR-Berlin数据集" class="headerlink" title="HS-SAR Berlin数据集"></a>HS-SAR Berlin数据集</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RhbmZlbmdob25nL0lTUFJTX1MyRkw=">https://github.com/danfenghong/ISPRS_S2FL</span></p>
+<p><img data-src="https://img-blog.csdnimg.cn/direct/02a423593ad54e02b9cddb8687351dbe.png" alt="在这里插入图片描述"></p>
+<h3 id="HS-SAR-DSM-Augsburg-数据集"><a href="#HS-SAR-DSM-Augsburg-数据集" class="headerlink" title="HS-SAR-DSM Augsburg 数据集"></a>HS-SAR-DSM Augsburg 数据集</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RhbmZlbmdob25nL0lTUFJTX1MyRkw=">https://github.com/danfenghong/ISPRS_S2FL</span><br><img data-src="https://img-blog.csdnimg.cn/direct/104204588aab4befa835d7147c504d9f.png" alt="在这里插入图片描述"></p>
+<h3 id="SEN12MS数据集"><a href="#SEN12MS数据集" class="headerlink" title="SEN12MS数据集"></a>SEN12MS数据集</h3><p><span class="exturl" data-url="aHR0cHM6Ly9tZWRpYXR1bS51Yi50dW0uZGUvMTQ3NDAwMA==">mediaTUM - Media and Publication Server</span></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数量</th>
+<th style="text-align:center">裁剪尺寸</th>
+<th style="text-align:center">空间分辨率</th>
+<th style="text-align:center">模态</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">180748</td>
+<td style="text-align:center">256</td>
+<td style="text-align:center">MS10米，SAR20米</td>
+<td style="text-align:center">MS、SAR</td>
+<td style="text-align:center">涵盖范围很广，全球大部分地区四季的影像都有</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>论文里面展示的图标注挺粗糙的，不过似乎DFC2020提供有高分辨率的标注图。</p>
+<p><img data-src="https://img-blog.csdnimg.cn/direct/e3831990008243c28d7f09057fab4462.png" alt="在这里插入图片描述"></p>
+<h2 id="optical-lidar-1"><a href="#optical-lidar-1" class="headerlink" title="optical-lidar"></a>optical-lidar</h2><h3 id="MUUFLGulfport"><a href="#MUUFLGulfport" class="headerlink" title="MUUFLGulfport"></a>MUUFLGulfport</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0dhdG9yU2Vuc2UvTVVVRkxHdWxmcG9ydA==">GatorSense/MUUFLGulfport: MUUFL Gulfport Hyperspectral and LIDAR Data: This data set includes HSI and LIDAR data, Scoring Code, Photographs of Scene, Description of Data (github.com)</span></p>
+<h3 id="Trento数据集"><a href="#Trento数据集" class="headerlink" title="Trento数据集"></a>Trento数据集</h3><p>参考<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3J2ZGdkc3ZhL2FydGljbGUvZGV0YWlscy8xMzU2Nzc5MDY=">【Trento】遥感图像数据集提供下载_遥感图像数据集下载-CSDN博客</span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2RyaXZlL2ZvbGRlcnMvMUhLM2VMM2xvSTRXZC1SRnIxcHNMTG1WTFRWRExjdEdk">下载</span></p>
+<p>Trento数据集取自意大利南部城市Trento的农村地区。Trento数据集的空间分辨率为1 m,场景包含六种不同的土地覆盖:苹果树、建筑、地面、木材、葡萄园和道路</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数量</th>
+<th style="text-align:center">裁剪尺寸</th>
+<th style="text-align:center">空间分辨率</th>
+<th style="text-align:center">模态</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">600×166像素</td>
+<td style="text-align:center">1米</td>
+<td style="text-align:center">HSI、LiDAR</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="other"><a href="#other" class="headerlink" title="other"></a>other</h2><h3 id="HS-MS-Houston2013数据集"><a href="#HS-MS-Houston2013数据集" class="headerlink" title="HS-MS Houston2013数据集"></a>HS-MS Houston2013数据集</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RhbmZlbmdob25nL0lTUFJTX1MyRkw=">https://github.com/danfenghong/ISPRS_S2FL</span></p>
+<p><img data-src="https://img-blog.csdnimg.cn/direct/a8a531c71797443e93a372036bde6941.png" alt="在这里插入图片描述"></p>
+
+      <div class="tags">
+          <a href="/tags/%E9%81%A5%E6%84%9F/" rel="tag"><i class="ic i-tag"></i> 遥感</a>
+          <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" rel="tag"><i class="ic i-tag"></i> 多模态</a>
+          <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag"><i class="ic i-tag"></i> 数据集</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2024-04-08 15:56:46" itemprop="dateModified" datetime="2024-04-08T15:56:46+08:00">2024-04-08</time>
+  </span>
+  <span id="2023/11/13/遥感多模态数据集/" class="item leancloud_visitors" data-flag-title="遥感多模态数据集" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>Foufor Past <i class="ic i-at"><em>@</em></i>FP 的一亩三分地
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://fouforpast.github.io/2023/11/13/%E9%81%A5%E6%84%9F%E5%A4%9A%E6%A8%A1%E6%80%81%E6%95%B0%E6%8D%AE%E9%9B%86/" title="遥感多模态数据集">https://fouforpast.github.io/2023/11/13/遥感多模态数据集/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/11/12/%E7%BA%BF%E6%AE%B5%E6%A0%91%E6%A8%A1%E6%9D%BF/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipexj2jgzj20zk0m8b09.jpg" title="线段树模板">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>线段树模板</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/11/13/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%A8%A1%E6%9D%BF/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipexw3o58j20zk0m8e81.jpg" title="树状数组模板">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>树状数组模板</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E8%A7%88"><span class="toc-number">1.</span> <span class="toc-text">总览</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#optical-dsm"><span class="toc-number">1.1.</span> <span class="toc-text">optical-dsm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#optical-sar"><span class="toc-number">1.2.</span> <span class="toc-text">optical-sar</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#optical-lidar"><span class="toc-number">1.3.</span> <span class="toc-text">optical-lidar</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hs-ms"><span class="toc-number">1.4.</span> <span class="toc-text">hs-ms</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#optical-dsm-1"><span class="toc-number"></span> <span class="toc-text">optical-dsm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Potsdam%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">1.</span> <span class="toc-text">Potsdam数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vaihingen%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">Vaihingen数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#N3C-California"><span class="toc-number">3.</span> <span class="toc-text">N3C-California</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DKDFN"><span class="toc-number">4.</span> <span class="toc-text">DKDFN</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#optical-sar-1"><span class="toc-number"></span> <span class="toc-text">optical-sar</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WHU-OPT-SAR%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">1.</span> <span class="toc-text">WHU-OPT-SAR数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DDHRNet%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">DDHRNet数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MSAW-%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">3.</span> <span class="toc-text">MSAW 数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HS-SAR-Berlin%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">4.</span> <span class="toc-text">HS-SAR Berlin数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HS-SAR-DSM-Augsburg-%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">5.</span> <span class="toc-text">HS-SAR-DSM Augsburg 数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SEN12MS%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">6.</span> <span class="toc-text">SEN12MS数据集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#optical-lidar-1"><span class="toc-number"></span> <span class="toc-text">optical-lidar</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MUUFLGulfport"><span class="toc-number">1.</span> <span class="toc-text">MUUFLGulfport</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Trento%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">Trento数据集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#other"><span class="toc-number"></span> <span class="toc-text">other</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HS-MS-Houston2013%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">1.</span> <span class="toc-text">HS-MS Houston2013数据集</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Foufor Past"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Foufor Past</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">25</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">2</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">19</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/11/12/%E7%BA%BF%E6%AE%B5%E6%A0%91%E6%A8%A1%E6%9D%BF/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/11/13/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%A8%A1%E6%9D%BF/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Foufor Past @ Foufor Past</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/11/13/遥感多模态数据集/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

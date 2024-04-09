@@ -1,0 +1,421 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="FP的一亩三分地" href="https://fouforpast.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="FP的一亩三分地" href="https://fouforpast.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="FP的一亩三分地" href="https://fouforpast.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="算法,字符串" />
+
+
+<link rel="canonical" href="https://fouforpast.github.io/2021/12/31/KMP%E7%AE%97%E6%B3%95/">
+
+
+
+  <title>
+KMP 算法 - 算法学习 |
+Foufor Past = FP 的一亩三分地</title>
+<meta name="generator" content="Hexo 7.0.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">KMP 算法
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2021-12-31 15:30:12">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2021-12-31T15:30:12+08:00">2021-12-31</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Foufor Past</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclfdu6exj20zk0m87hw.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipevgoki5j20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipexj2jgzj20zk0m8b09.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giciuja1j1j20zk0m8kjl.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipeyhsblkj20zk0m81kx.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipexw3o58j20zk0m8e81.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" itemprop="item" rel="index" title="分类于 算法学习"><span itemprop="name">算法学习</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://fouforpast.github.io/2021/12/31/KMP%E7%AE%97%E6%B3%95/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Foufor Past">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="FP 的一亩三分地">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <p>KMP算法简要介绍<br><span id="more"></span></p>
+<p>KMP算法可以高效地在一个文本串T（长度为n）中查找模式串P（长度为m）的出现位置。</p>
+<p>首先看一下蛮力匹配的匹配过程。</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/FouforPast/pic-storage@main/img/%E8%9B%AE%E5%8A%9B%E5%8C%B9%E9%85%8D.png" alt="屏幕截图 2021-12-31 143350"></p>
+<p>蛮力匹配中，如果P在位置j和T在位置i失配，P会回退到位置0，T的位置＋1，然后二者重新开始比对。这种算法的平均复杂度是O(m*n)。</p>
+<p>可以看到，实际上P[5]和T[5]失配后，实际上可以直接从P[2]和T[5]开始比对，这是因为第一次比对的过程中，我们得到了P[0:4]==T[0:4]的信息，因此第二次比对实际上是P[0:3]和P[1:4]之间的比对，第三次比对是P[0:2]和P[2:4]之间的比对，如果我们可以预处理P字符串，得到P[0:3]!=P[1:4]，P[0:2]!=P[2:4]，P[0:1]==P[3:4]的信息，我们就可以跳过第二次和第三次比对，直接从P[2]和T[5]比对开始。如此以来我们不需要回退T的指针，可以将复杂度压缩到O(n)。</p>
+<p>那么我们怎么从P[5]和T[5]失配得到下一次应该比对的是P[2]和T[5]呢，实际上，我们只需要找到P[0:4]的最大长度的相匹配的真前缀和真后缀即可。即如果P在位置j失配，下次比对的位置应该为</p>
+<script type="math/tex; mode=display">
+next[j]=max(\{0\leq t<j|P[0,t)==P[j-t,j)\})</script><p>以bacbab为例</p>
+<ul>
+<li>j=0，next[0] = -1（假想P[-1]为通配）</li>
+<li>j=1, b没有真前缀和真后缀，因此next[1]=0</li>
+<li>j=2, ba的真前缀为{b}，真后缀为{a}，没有共有元素，因此next[2]=0</li>
+<li>j=3，bac的真前缀为{b,ba}，真后缀为{ac,c}，没有共有元素，因此next[3]=0</li>
+<li>j=4,  bacb的真前缀为{b,ba,bac}，真后缀为{acb,cb,b}，二者最大长度的共有元素为b，长度为1，因此next[4]=1</li>
+<li>j=5，bacba的真前缀为{b,ba,bac,bacb}，真后缀为{acba,cba,ba,a}，二者最大长度的共有元素为ba,因此next[5]=2</li>
+</ul>
+<p>下面用代码计算next表</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// next[i]代表了如果模式串P在i处和主串T的第j个位置失配，下一次应该比较模式串的第next[i]个位置和主串的第j个位置</span></span><br><span class="line"><span class="comment">// next[i] = max&#123;k | k &lt; i &amp;&amp; p[0...k-1] == p[i-k...i-1]&#125;</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">buildNext</span><span class="params">(string&amp; P)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> m = P.<span class="built_in">size</span>();</span><br><span class="line">    <span class="type">int</span> j = <span class="number">-1</span>;  <span class="comment">// j代表了模式串的下标（这里的模式串就是P[0:j]）</span></span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">next</span><span class="params">(m, <span class="number">-1</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; m; ++i) &#123; <span class="comment">// i代表主串的比对下标（这里的主串就是P[0:i]</span></span><br><span class="line">        <span class="keyword">if</span> (j &lt; <span class="number">0</span>||P[i - <span class="number">1</span>] == P[j]) &#123;   <span class="comment">// 如果匹配成功</span></span><br><span class="line">            ++j;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;   <span class="comment">// 如果匹配失败,按照next[i]的定义,j回溯到上一个匹配的位置</span></span><br><span class="line">            <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; P[i - <span class="number">1</span>] != P[j]) &#123;</span><br><span class="line">                j = next[j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 跳出上面的循环要么是j = -1,要么是P[i - 1] == P[j]，这两种情况都需要对j+1,</span></span><br><span class="line">            <span class="comment">// 如果在P[i]处和T[idx]失配，说明P[:i]==T[idx-i:idx]，由next的定义，P[:next[i]] == P[i-next[i]:i] == T[idx-next[i]:idx]，</span></span><br><span class="line">            <span class="comment">// 下一次需要比较P[next[i]]和T[idx]，所以j要加1</span></span><br><span class="line">            ++j;</span><br><span class="line">            next[i] = j; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">strStr</span><span class="params">(string T, string P)</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; next = <span class="built_in">buildNext</span>(P);</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; T.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (T[i] == P[j]) &#123;   <span class="comment">// 如果匹配成功</span></span><br><span class="line">            ++j;</span><br><span class="line">            <span class="keyword">if</span> (j == next.<span class="built_in">size</span>()) &#123;</span><br><span class="line">                <span class="keyword">return</span> i - j + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;   <span class="comment">// 如果匹配失败,按照next[i]的定义,j回溯到上一个匹配的位置</span></span><br><span class="line">            <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; T[i] != P[j]) &#123;</span><br><span class="line">                j = next[j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 跳出上面的循环要么是j = -1,要么是P[i] == P[j]，这两种情况都需要对j+1</span></span><br><span class="line">            ++j;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>精简版本：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">buildNext</span><span class="params">(string&amp; P)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> m = P.<span class="built_in">size</span>();</span><br><span class="line">    <span class="type">int</span> j = <span class="number">-1</span>;  <span class="comment">// j代表了模式串的下标（这里的模式串就是P[0:j]）</span></span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">next</span><span class="params">(m, <span class="number">-1</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; m; ++i) &#123; <span class="comment">// i代表主串的比对下标（这里的主串就是P[0:i]</span></span><br><span class="line">        <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; P[i - <span class="number">1</span>] != P[j]) &#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">        ++j;</span><br><span class="line">        next[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">strStr</span><span class="params">(string T, string P)</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; next = <span class="built_in">buildNext</span>(P);</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; T.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">        <span class="comment">// 如果匹配失败,按照next[i]的定义,j回溯到上一个匹配的位置</span></span><br><span class="line">        <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; T[i] != P[j]) &#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 跳出上面的循环要么是j = -1,要么是P[i] == P[j]，这两种情况都需要对j+1</span></span><br><span class="line">        ++j;</span><br><span class="line">        <span class="keyword">if</span> (j == next.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="keyword">return</span> i - j + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外一种版本：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">buildNext</span> <span class="params">(string&amp; P)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> m = P.<span class="built_in">size</span>();</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> t = <span class="number">-1</span>;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">next</span><span class="params">(m, <span class="number">-1</span>)</span></span>;</span><br><span class="line">    <span class="keyword">while</span>(j &lt; m - <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(t == <span class="number">-1</span> || P[j] == P[t])&#123; <span class="comment">// 一直匹配的情况</span></span><br><span class="line">            ++j;</span><br><span class="line">            ++t;</span><br><span class="line">            next[j] = t;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;   <span class="comment">// 失配的情况</span></span><br><span class="line">            t = next[t];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> next;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(string P, string T)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> m = P.<span class="built_in">size</span>(), n = T.<span class="built_in">size</span>();</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; next = <span class="built_in">buildNext</span>(P);</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">-1</span>||T[i] == P[j])&#123;</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">            <span class="keyword">if</span>(j == m)&#123;</span><br><span class="line">                <span class="keyword">return</span> i - m;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度：设<script type="math/tex">k=2i-j</script>，每次while循环如果满足$j == -1||T[i] == P[j]$则k严格增加1，如果不满足由于$j=next[j]$，即j至少会增加1，则k至少会减小1。所以while循环不会超过k次。由于$k\leq2<em>i<em>{max}-j</em>{min}$，所以$k\leq2</em>n+1$，所以时间复杂度为O(2*n+1)，即O(n)</p>
+<p>其实上面的next表计算的是字符串P的<strong>真前缀</strong>的所有真前缀和真后缀中相同子串的最大长度，并没有计算P自身的所有真前缀和真后缀中相同子串的最大长度，如果是想计算后者，一种方法是在P后追加一个字符，计算这个新的字符串的next表，取next[1:end]即可；另一种方法是修改计算next的逻辑，代码如下：</p>
+<p>（这里面计算出来的值相当于是$len[j]=max({0\leq t&lt;j|P[0,t)==P(j-t,j]})$，在原始的next数组基础上整体向前移动一个元素，等价于下面的java代码）。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">getMaxPreSuf</span> <span class="params">(string&amp; P)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> m = P.<span class="built_in">size</span>();</span><br><span class="line">    <span class="type">int</span> j = <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> t = <span class="number">0</span>;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">len</span><span class="params">(m, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">while</span>(j &lt;= m - <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(P[j] == P[t])&#123;</span><br><span class="line">            t++;</span><br><span class="line">            len[j] = t;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (t != <span class="number">0</span>)&#123;</span><br><span class="line">            t = len[t - <span class="number">1</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><del>再引申一下，如何计算字符串P的所有前缀和字符串Q的所有后缀中相同子串的最长长度，实际上修改一下上面的getMaxPreSuf函数就行了。</del></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">int getMax (string P, string Q) &#123;</span></span><br><span class="line"><span class="comment">    int m = P.size(), n = Q.size();</span></span><br><span class="line"><span class="comment">    int start = m &gt; n? 0:n - m;</span></span><br><span class="line"><span class="comment">    int j = start + 1;</span></span><br><span class="line"><span class="comment">    int t = 0;</span></span><br><span class="line"><span class="comment">    vector&lt;int&gt; len(min(m, n), 0);</span></span><br><span class="line"><span class="comment">    while(j &lt; n)&#123;</span></span><br><span class="line"><span class="comment">        if(Q[j] == P[t])&#123;</span></span><br><span class="line"><span class="comment">            t++;</span></span><br><span class="line"><span class="comment">            len[j - start] = t;</span></span><br><span class="line"><span class="comment">            j++;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        else if (t != 0)&#123;</span></span><br><span class="line"><span class="comment">            t = len[t - 1];</span></span><br><span class="line"><span class="comment">        &#125; else&#123;</span></span><br><span class="line"><span class="comment">            j++;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    return len.back();</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>ps：计算前缀表的另外一种方法，这种方法的next数组含义是P[j]和T[i]失配后，应该比较P[next[j-1]]和T[i]，这里的next[i]表示P[:i+1]的最大公共前后缀。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">strStr</span><span class="params">(String haystack, String needle)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] next = getNext(needle);</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; haystack.length(); ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(haystack.charAt(i) == needle.charAt(j))&#123;</span><br><span class="line">                j++;</span><br><span class="line">                <span class="keyword">if</span>(j == next.length)&#123;</span><br><span class="line">                    <span class="keyword">return</span> i - j + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">while</span>(j &gt; <span class="number">0</span>&amp;&amp;haystack.charAt(i) != needle.charAt(j))&#123;</span><br><span class="line">                    j = next[j - <span class="number">1</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(haystack.charAt(i) == needle.charAt(j))&#123;</span><br><span class="line">                    j++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] getNext(String needle)&#123;</span><br><span class="line">        <span class="type">int</span>[] next = <span class="keyword">new</span> <span class="title class_">int</span>[needle.length()];</span><br><span class="line">        next[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; needle.length(); ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(needle.charAt(i) == needle.charAt(j))&#123;</span><br><span class="line">                j++; <span class="comment">// next[i]表示P[:i+1]的最大公共前后缀,例如aabaa，i=4,j=1(=&gt; j=2)</span></span><br><span class="line">                next[i] = j;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">// 失配的情况下回到上一个匹配的位置</span></span><br><span class="line">                <span class="keyword">while</span>(j &gt; <span class="number">0</span>&amp;&amp;needle.charAt(i) != needle.charAt(j))&#123;</span><br><span class="line">                    j = next[j - <span class="number">1</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 上一个位置如果匹配，j++</span></span><br><span class="line">                <span class="keyword">if</span>(needle.charAt(i) == needle.charAt(j))&#123;</span><br><span class="line">                    j++;</span><br><span class="line">                &#125;</span><br><span class="line">                next[i] = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码仍然可以精简</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">strStr</span><span class="params">(String haystack, String needle)</span> &#123;</span><br><span class="line">    <span class="type">int</span>[] next = getNext(needle);</span><br><span class="line">    <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; haystack.length(); ++i)&#123;</span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">0</span>&amp;&amp;haystack.charAt(i) != needle.charAt(j))&#123;</span><br><span class="line">            j = next[j - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(haystack.charAt(i) == needle.charAt(j))&#123;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(j == next.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> i - j + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span>[] getNext(String needle)&#123;</span><br><span class="line">    <span class="type">int</span>[] next = <span class="keyword">new</span> <span class="title class_">int</span>[needle.length()];</span><br><span class="line">    next[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; needle.length(); ++i)&#123;</span><br><span class="line">        <span class="comment">// 失配的情况下回到上一个匹配的位置</span></span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">0</span>&amp;&amp;needle.charAt(i) != needle.charAt(j))&#123;</span><br><span class="line">            j = next[j - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 上一个位置如果匹配，j++</span></span><br><span class="line">        <span class="keyword">if</span>(needle.charAt(i) == needle.charAt(j))&#123;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        next[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      <div class="tags">
+          <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="ic i-tag"></i> 算法</a>
+          <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"><i class="ic i-tag"></i> 字符串</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2024-04-08 15:49:57" itemprop="dateModified" datetime="2024-04-08T15:49:57+08:00">2024-04-08</time>
+  </span>
+  <span id="2021/12/31/KMP算法/" class="item leancloud_visitors" data-flag-title="KMP 算法" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>Foufor Past <i class="ic i-at"><em>@</em></i>FP 的一亩三分地
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://fouforpast.github.io/2021/12/31/KMP%E7%AE%97%E6%B3%95/" title="KMP 算法">https://fouforpast.github.io/2021/12/31/KMP算法/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2022/10/29/%E9%81%A5%E6%84%9F%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BB%BC%E8%BF%B0/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giciukx8a7j20zk0m8aio.jpg" title="遥感多模态综述">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 论文阅读</span>
+  <h3>遥感多模态综述</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/2021/12/31/KMP%E7%AE%97%E6%B3%95/" rel="bookmark" title="KMP算法">KMP算法</a></li><li><a href="/2022/11/03/n%E4%B8%AA%E7%90%83%E6%94%BE%E5%85%A5m%E4%B8%AA%E7%AE%B1%E5%AD%90%E9%97%AE%E9%A2%98/" rel="bookmark" title="n个球放入m个箱子问题">n个球放入m个箱子问题</a></li><li><a href="/2023/07/23/%E8%AE%A1%E7%AE%97%E6%8E%92%E5%88%97%E4%B8%8E%E7%BB%84%E5%90%88/" rel="bookmark" title="计算排列与组合">计算排列与组合</a></li><li><a href="/2023/07/23/%E4%BD%8D%E8%BF%90%E7%AE%97%E6%8A%80%E5%B7%A7/" rel="bookmark" title="位运算技巧">位运算技巧</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Foufor Past"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Foufor Past</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">25</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">2</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">19</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Foufor Past @ Foufor Past</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2021/12/31/KMP算法/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>
