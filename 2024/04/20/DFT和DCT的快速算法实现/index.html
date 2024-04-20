@@ -1,0 +1,500 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="FP的一亩三分地" href="https://fouforpast.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="FP的一亩三分地" href="https://fouforpast.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="FP的一亩三分地" href="https://fouforpast.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="算法" />
+
+
+<link rel="canonical" href="https://fouforpast.github.io/2024/04/20/DFT%E5%92%8CDCT%E7%9A%84%E5%BF%AB%E9%80%9F%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
+
+
+
+  <title>
+DFT 和 DCT 的快速算法实现 |
+Foufor Past = FP 的一亩三分地</title>
+<meta name="generator" content="Hexo 7.0.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">DFT 和 DCT 的快速算法实现
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2024-04-20 15:06:58">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2024-04-20T15:06:58+08:00">2024-04-20</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Foufor Past</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipetfk5zwj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclfdu6exj20zk0m87hw.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeudstjqj20zk0m8k3r.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclgrvbd6j20zk0m8qv5.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicljitigmj20zk0m87fp.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicitcxhpij20zk0m8hdt.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://fouforpast.github.io/2024/04/20/DFT%E5%92%8CDCT%E7%9A%84%E5%BF%AB%E9%80%9F%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Foufor Past">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="FP 的一亩三分地">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <p>傅里叶变换和离散余弦变换的几种快速算法与代码实现</p>
+<p>完整代码详见<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0ZvdWZvclBhc3QvRGlnaXRhbC1JbWFnZS1Qcm9jZXNzL2Jsb2IvbWFpbi9mZHQuY3Bw">Digital-Image-Process/fdt.cpp at main · FouforPast/Digital-Image-Process (github.com)</span></p>
+<span id="more"></span>
+<h2 id="1-傅里叶变换"><a href="#1-傅里叶变换" class="headerlink" title="1. 傅里叶变换"></a>1. 傅里叶变换</h2><h3 id="1-1-朴素傅里叶变换算法"><a href="#1-1-朴素傅里叶变换算法" class="headerlink" title="1.1 朴素傅里叶变换算法"></a>1.1 朴素傅里叶变换算法</h3><p><img data-src="https://gitee.com/FouforPast/md_picture/raw/master/typora/image-20240129133007100.png" alt="image-20240129133007100"></p>
+<p>利用上述公式计算的DFT如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">朴素二维离散傅里叶变换</span></span><br><span class="line"><span class="comment">args:</span></span><br><span class="line"><span class="comment">    src: 输入图像</span></span><br><span class="line"><span class="comment">    dst: 输出图像</span></span><br><span class="line"><span class="comment">    sx: 补齐的行数</span></span><br><span class="line"><span class="comment">    sy: 补齐的列数</span></span><br><span class="line"><span class="comment">    shift: 是否进行频谱中心化</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dftNaive</span><span class="params">(Mat&amp; src, Mat&amp; dst, <span class="type">int</span> sx, <span class="type">int</span> sy, <span class="type">bool</span> shift)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Mat input = src.<span class="built_in">clone</span>();</span><br><span class="line">    <span class="built_in">pad</span>(input, sx, sy);</span><br><span class="line">    <span class="type">int</span> M = input.rows;</span><br><span class="line">    <span class="type">int</span> N = input.cols;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (src.<span class="built_in">type</span>() != <span class="number">0</span>) &#123; <span class="comment">// CV_8U</span></span><br><span class="line">        <span class="keyword">throw</span> std::<span class="built_in">invalid_argument</span>(<span class="string">&quot;only CV_8U is accepted&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Mat res = <span class="built_in">Mat</span>(M, N, CV_32FC2, Scalar::<span class="built_in">all</span>(<span class="number">0</span>));</span><br><span class="line">    <span class="type">float</span>* ptr_res = (<span class="type">float</span>*)res.data;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> u = <span class="number">0</span>; u &lt; M; ++u) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> v = <span class="number">0</span>; v &lt; N; ++v) &#123;</span><br><span class="line">            <span class="type">float</span>* ptr_src = (<span class="type">float</span>*)input.data;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> x = <span class="number">0</span>; x &lt; M; ++x) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> y = <span class="number">0</span>; y &lt; N; ++y) &#123;</span><br><span class="line">                    <span class="type">double</span> tmp = ((<span class="type">double</span>)u * x / (<span class="type">double</span>)M + (<span class="type">double</span>)v * y / (<span class="type">double</span>)N) * <span class="number">2</span> * M_PI;</span><br><span class="line">                    <span class="type">int</span> factor = shift &amp; (x + y) &amp; <span class="number">1</span> ? <span class="number">-1</span> : <span class="number">1</span>; <span class="comment">// 是否乘以-1</span></span><br><span class="line">                    res.<span class="built_in">at</span>&lt;Vec2f&gt;(u, v)[<span class="number">0</span>] += input.<span class="built_in">at</span>&lt;uchar&gt;(x, y) * <span class="built_in">cos</span>(-tmp) * factor;</span><br><span class="line">                    res.<span class="built_in">at</span>&lt;Vec2f&gt;(u, v)[<span class="number">1</span>] += input.<span class="built_in">at</span>&lt;uchar&gt;(x, y) * <span class="built_in">sin</span>(-tmp) * factor;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    res.<span class="built_in">copyTo</span>(dst);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>朴素算法的算法复杂度是$O(M^2 N^2)$，复杂度较高，实用性较低。利用DFT的可分离性，可以将二维DFT的计算转化为一维DFT的计算。优化一维DFT就可以达到优化二维DFT的目的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 利用可分离性原地计算离散傅里叶变换和逆变换（unscaled）</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">helpFFT</span><span class="params">(<span class="type">float</span>* real, <span class="type">float</span>* imag, <span class="type">int</span> M, <span class="type">int</span> N, <span class="type">bool</span> inverse)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 对行进行FFT</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; M; ++i) &#123;</span><br><span class="line">        <span class="built_in">dft1d</span>(real + N * i, imag + N * i, N, inverse);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 对列进行傅里叶变换</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; N; ++j) &#123;</span><br><span class="line">        complex&lt;<span class="type">float</span>&gt;* col = <span class="keyword">new</span> complex&lt;<span class="type">float</span>&gt;[M];</span><br><span class="line">        <span class="type">float</span>* real_ = <span class="keyword">new</span> <span class="type">float</span>[M];</span><br><span class="line">        <span class="type">float</span>* imag_ = <span class="keyword">new</span> <span class="type">float</span>[M];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; M; ++i) &#123;</span><br><span class="line">            real_[i] = real[i * M + j];</span><br><span class="line">            imag_[i] = imag[i * M + j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">dft1d</span>(real_, imag_, M, inverse);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; M; ++i) &#123;</span><br><span class="line">            real[i * M + j] = real_[i];</span><br><span class="line">            imag[i * M + j] = imag_[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中朴素一维DFT如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 朴素一维傅里叶变换和逆变换（unscaled）</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dft1dNaive</span><span class="params">(<span class="type">float</span>* real, <span class="type">float</span>* imag, <span class="type">unsigned</span> L, <span class="type">bool</span> inverse)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (L == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> fact = inverse ? <span class="number">1</span> : <span class="number">-1</span>;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">double</span>&gt; <span class="title">real_</span><span class="params">(L, <span class="number">0</span>)</span>, <span class="title">imag_</span><span class="params">(L, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; L; ++i) &#123;</span><br><span class="line">        <span class="type">double</span> real0 = <span class="built_in">cos</span>(<span class="number">2</span> * M_PI * i / L), imag0 = fact * <span class="built_in">sin</span>(<span class="number">2</span> * M_PI * i / L);</span><br><span class="line">        <span class="type">double</span> real1 = <span class="number">1</span>, imag1 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; L; ++j) &#123;</span><br><span class="line">            real_[i] += real[j] * real1 - imag[j] * imag1;</span><br><span class="line">            imag_[i] += real[j] * imag1 + imag[j] * real1;</span><br><span class="line">            real1 = real1 * real0 - imag1 * imag0;</span><br><span class="line">            imag1 = real1 * imag0 + imag1 * real0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; L; ++i) &#123;</span><br><span class="line">        real[i] = real_[i];</span><br><span class="line">        imag[i] = imag_[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-Cooley-Tukey算法"><a href="#1-2-Cooley-Tukey算法" class="headerlink" title="1.2 Cooley-Tukey算法"></a>1.2 Cooley-Tukey算法</h3><p>Cooley-Turkey算法的前提是信号长度N不是质数，即N可以分解$N=nm$。该算法采用分治的思想，将N个数据分成m组，每组n个(按照下标对m取模的值分组)。根据消去引理，设单位复根$w<em>N^t=\exp⁡(\frac{-j2πt}{N})$，则$w</em>{kN}^{kt}=w_N^t$。所以一维DFT</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+F(u) &=∑_{x=0}^{N-1} f(x) \exp⁡(\frac{-j2πux}{N})\\
+&= ∑_{x=0}^{N-1} f(x) w_N^{ux}  \\
+     &= ∑_{a=0}^{m-1} ∑_{b=0}^{n-1} f(bm+a) w_{nm}^{u(bm+a)}  \\
+     &= ∑_{a=0}^{m-1} w_{nm}^{ua} ∑_{b=0}^{n-1} f(bm+a) w_{nm}^{ubm} \\  
+     &= ∑_{a=0}^{m-1} w_{nm}^{ua} ∑_{b=0}^{n-1} f(bm+a) w_n^{ub} \\ 
+     &= ∑_{a=0}^{m-1} w_{nm}^{ua} \text{DFT}(\{f(bm+a), b=0,1,...,n-1\})  \\
+     &= ∑_{a=0}^{m-1} w_{nm}^{ua} X_{(a,u)} \quad (0≤u<n)
+\end{aligned}</script><p>对每组长度为n的数据进行DFT，得到的结果为$X<em>{a,u}$(表示第a组数据DFT的结果中下标为u的数据)，很容易证明$X</em>{a,u}=X_{a,u+n}$，进而</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+G(k) &= F(u+kn)  \\
+&= ∑_{a=0}^{m-1} w_{nm}^{(u+kn)a} X_{(a,u+kn)}  \\
+     &= ∑_{a=0}^{m-1} w_{nm}^{(u+kn)a} X_{(a,u)}  \\
+     &= ∑_{a=0}^{m-1} w_m^{ka} (w_{nm}^{ua} X_{(a,u)})  \\
+     &= \text{DFT}(\{w_{nm}^{ua} X_{(a,u)},a=0,1,...,m-1\})\\&k=0,1,...,m
+\end{aligned}</script><p>因此，要计算$F(u+kn)$，取出每组得到的DFT结果中下标均为u的数据，将其乘以$w_{nm}^{au}$ ，然后再对这些数据做DFT即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CooleyTukey算法计算当L是2,3,5的倍数时的一维傅里叶变换和逆变换</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fft1dCooleyTukey</span><span class="params">(<span class="type">float</span>* real, <span class="type">float</span>* imag, <span class="type">unsigned</span> L, <span class="type">bool</span> inverse)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (L == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> fact = inverse ? <span class="number">1</span> : <span class="number">-1</span>;</span><br><span class="line">    <span class="comment">// 确定分组数目</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="keyword">if</span> (L % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">		num = <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (L % <span class="number">3</span> == <span class="number">0</span>) &#123;</span><br><span class="line">		num = <span class="number">3</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		num = <span class="number">5</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">// 分组</span></span><br><span class="line">    <span class="type">unsigned</span> newL = L / num;</span><br><span class="line">    <span class="type">float</span>** groupReal = <span class="keyword">new</span> <span class="type">float</span>* [num];</span><br><span class="line">    <span class="type">float</span>** groupImag = <span class="keyword">new</span> <span class="type">float</span>* [num];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; num; ++i) &#123;</span><br><span class="line">        groupReal[i] = <span class="keyword">new</span> <span class="type">float</span>[newL];</span><br><span class="line">        groupImag[i] = <span class="keyword">new</span> <span class="type">float</span>[newL];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; L; ++i) &#123;</span><br><span class="line">        groupReal[i % num][i / num] = real[i];</span><br><span class="line">        groupImag[i % num][i / num] = imag[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对每组数据进行DFT</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; num; ++i) &#123;</span><br><span class="line">        <span class="built_in">dft1d</span>(groupReal[i], groupImag[i], newL, inverse);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">float</span> real0 = <span class="built_in">cos</span>(<span class="number">2</span> * M_PI / L), imag0 = fact * <span class="built_in">sin</span>(<span class="number">2</span> * M_PI / L);</span><br><span class="line">    <span class="type">float</span> real1 = <span class="number">1</span>, imag1 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; newL; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="type">float</span> tmpReal = real1 * groupReal[<span class="number">1</span>][i] - imag1 * groupImag[<span class="number">1</span>][i];</span><br><span class="line">            <span class="type">float</span> tmpImag = imag1 * groupReal[<span class="number">1</span>][i] + real1 * groupImag[<span class="number">1</span>][i];</span><br><span class="line">            real[i] = groupReal[<span class="number">0</span>][i] + tmpReal;</span><br><span class="line">            imag[i] = groupImag[<span class="number">0</span>][i] + tmpImag;</span><br><span class="line">            real[i + newL] = groupReal[<span class="number">0</span>][i] - tmpReal;</span><br><span class="line">            imag[i + newL] = groupImag[<span class="number">0</span>][i] - tmpImag;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">float</span>* tempReal = <span class="keyword">new</span> <span class="type">float</span>[num];</span><br><span class="line">            <span class="type">float</span>* tempImag = <span class="keyword">new</span> <span class="type">float</span>[num];</span><br><span class="line">            <span class="type">float</span> real2 = <span class="number">1</span>, imag2 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; num; ++j) &#123;</span><br><span class="line">                tempReal[j] = groupReal[j][i] * real2 - groupImag[j][i] * imag2;</span><br><span class="line">                tempImag[j] = groupImag[j][i] * real2 + groupReal[j][i] * imag2;</span><br><span class="line">                <span class="keyword">auto</span> tmpReal2 = real2;</span><br><span class="line">                real2 = real2 * real1 - imag2 * imag1;</span><br><span class="line">                imag2 = tmpReal2 * imag1 + imag2 * real1;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 长度是3或5直接调用朴素DFT算法</span></span><br><span class="line">            <span class="built_in">dft1dNaive</span>(tempReal, tempImag, num, inverse);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; num; ++j) &#123;</span><br><span class="line">                real[i + newL * j] = tempReal[j];</span><br><span class="line">                imag[i + newL * j] = tempImag[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">auto</span> tmpReal1 = real1;</span><br><span class="line">        real1 = real1 * real0 - imag1 * imag0;</span><br><span class="line">        imag1 = tmpReal1 * imag0 + imag1 * real0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-基2FFT算法"><a href="#1-3-基2FFT算法" class="headerlink" title="1.3 基2FFT算法"></a>1.3 基2FFT算法</h3><p>如果信号的长度N是2的幂次，此时采用Cooley–Tukey算法就是最常见的基2快速傅里叶算法，这种情况下按照下标的奇偶性将对信号分成两组。对于基2的DCT算法，既可以采用递归形式实现，也可以采用迭代形式实现，如果采用递归实现，调用过程中会占用大量系统堆栈，效率不高，因此一般是迭代形式实现。</p>
+<p>由下面的递归树可知，只需要事先对原始数据排好序，然后对其进行归并即可。</p>
+<p><img data-src="https://gitee.com/FouforPast/md_picture/raw/master/typora/image-20240129134316403.png" alt="N=8时的递归树"></p>
+<p>观察N=8时的例子，排好序后的顺序，实际上是原来下标的二进制表示翻转得到的。</p>
+<p>以$a_6$为例，6的二进制表示是110，将其翻转得到011，011就是3，也就是排好序后$a_6$所处的位置。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 翻转数字的bit</span></span><br><span class="line"><span class="function"><span class="type">size_t</span> <span class="title">reverseBits</span><span class="params">(<span class="type">size_t</span> val, <span class="type">int</span> width)</span> </span>&#123;</span><br><span class="line">	<span class="type">size_t</span> result = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; width; i++, val &gt;&gt;= <span class="number">1</span>)</span><br><span class="line">		result = (result &lt;&lt; <span class="number">1</span>) | (val &amp; <span class="number">1U</span>);</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 迭代形式的基2一维傅里叶变换和逆变换（unscaled）</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fft1dIterRadix2</span><span class="params">(<span class="type">float</span>* real, <span class="type">float</span>* imag, <span class="type">unsigned</span> L, <span class="type">bool</span> inverse)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (L &amp; (L - <span class="number">1</span>)) &#123;</span><br><span class="line">        <span class="keyword">throw</span> std::<span class="built_in">invalid_argument</span>(<span class="string">&quot;invalid length, make sure L is positive and a power of 2&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> n = <span class="built_in">log2n</span>(L);</span><br><span class="line">    <span class="type">int</span> fact = inverse ? <span class="number">1</span> : <span class="number">-1</span>;</span><br><span class="line">    <span class="comment">// 交换原始数据的位置</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; L; ++i) &#123;</span><br><span class="line">        <span class="type">size_t</span> y = <span class="built_in">reverseBits</span>(i, n);</span><br><span class="line">        <span class="keyword">if</span> (y &gt; i) &#123;</span><br><span class="line">            <span class="built_in">swap</span>(real[i], real[y]);</span><br><span class="line">            <span class="built_in">swap</span>(imag[i], imag[y]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 预处理Wn表</span></span><br><span class="line">    <span class="type">float</span>* _real = <span class="keyword">new</span> <span class="type">float</span>[L &gt;&gt; <span class="number">1</span>];</span><br><span class="line">    <span class="type">float</span>* _imag = <span class="keyword">new</span> <span class="type">float</span>[L &gt;&gt; <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; (L &gt;&gt; <span class="number">1</span>); ++i) &#123;</span><br><span class="line">        _real[i] = <span class="built_in">cos</span>(<span class="number">2</span> * M_PI * i / L);</span><br><span class="line">        _imag[i] = fact * <span class="built_in">sin</span>(<span class="number">2</span> * M_PI * i / L);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 蝶形运算</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= L; i &lt;&lt;= <span class="number">1</span>) &#123;             <span class="comment">// 小序列长度</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; L; j += i) &#123;           <span class="comment">// 小序列起始坐标</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; (i &gt;&gt; <span class="number">1</span>); ++k) &#123;   <span class="comment">// 计算小序列的dft</span></span><br><span class="line">                <span class="type">int</span> idx1 = j + k;</span><br><span class="line">                <span class="type">int</span> idx2 = idx1 + (i &gt;&gt; <span class="number">1</span>);</span><br><span class="line">                <span class="type">float</span> tmpReal = real[idx2] * _real[k * L / i] - imag[idx2] * _imag[k * L / i];</span><br><span class="line">                <span class="type">float</span> tmpImag = imag[idx2] * _real[k * L / i] + real[idx2] * _imag[k * L / i];</span><br><span class="line">                real[idx2] = real[idx1] - tmpReal;</span><br><span class="line">                imag[idx2] = imag[idx1] - tmpImag;</span><br><span class="line">                real[idx1] += tmpReal;</span><br><span class="line">                imag[idx1] += tmpImag;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-4-Bluestein算法"><a href="#1-4-Bluestein算法" class="headerlink" title="1.4 Bluestein算法"></a>1.4 Bluestein算法</h3><p>当信号f(x)的长度N是质数时，CT算法不再适应，此时可以使用Bluestein算法。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+F(u) &= \sum_{x=0}^{N-1} f(x) w_N^{ux} \\
+     &= \sum_{x=0}^{N-1} f(x) w_N^{\frac{-(u-x)^2 + u^2 + x^2}{2}} \\
+     &= w_N^{u^2/2} \sum_{x=0}^{N-1} f(x) w_N^{x^2/2} w_N^{-(u-x)^2/2} \\
+     &= w_N^{u^2/2} \sum_{x=0}^{N-1} g(x) \cdot h(u-x),
+\end{aligned}</script><p>其中，$g(x) = f(x) w_N^{x^2/2}$，$h(x) = w_N^{-x^2/2}$，则</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+F(u) &= w_N^{u^2/2} \sum_{x=0}^{N-1} g(x) \cdot h(u-x) \\
+     &= w_N^{u^2/2} g(x)*h(x),
+\end{aligned}</script><p>然后使用卷积定理，并补零到2的幂次：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+F(u) &= w_N^{u^2/2} \sum_{x=0}^{N-1} g(x) \cdot h(u-x) \\
+     &= w_N^{u^2/2} \text{IFFT}_2\left(\text{FFT}_2(\text{pad}(g)) \cdot \text{FFT}_2(\text{pad}(h'))\right),
+\end{aligned}</script><p>其中 <code>pad</code> 表示补零操作，<code>FFT_2</code> 和 <code>IFFT_2</code> 分别表示基2的迭代形式FFT算法和逆FFT算法。这里，<code>h&#39;</code> 是 <code>h</code> 在对称中心进行延拓后得到的信号。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bluestein算法计算一维傅里叶变换和逆变换（unscaled）</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fft1dBluestein</span><span class="params">(<span class="type">float</span>* real, <span class="type">float</span>* imag, complex&lt;<span class="type">float</span>&gt;* table, <span class="type">unsigned</span> L, <span class="type">bool</span> inverse)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 补齐到2的幂次</span></span><br><span class="line">    <span class="type">int</span> N = <span class="number">1</span> &lt;&lt; (<span class="built_in">log2n</span>(L * <span class="number">2</span>) + <span class="number">1</span>);</span><br><span class="line">    <span class="type">int</span> fact = inverse ? <span class="number">1</span> : <span class="number">-1</span>;</span><br><span class="line">    <span class="comment">// 预处理中间向量</span></span><br><span class="line">    <span class="type">float</span>* realA = <span class="keyword">new</span> <span class="type">float</span>[N]();</span><br><span class="line">    <span class="type">float</span>* realB = <span class="keyword">new</span> <span class="type">float</span>[N]();    </span><br><span class="line">    <span class="type">float</span>* imagA = <span class="keyword">new</span> <span class="type">float</span>[N]();</span><br><span class="line">    <span class="type">float</span>* imagB = <span class="keyword">new</span> <span class="type">float</span>[N]();</span><br><span class="line"></span><br><span class="line">    complex&lt;<span class="type">float</span>&gt;* a = <span class="keyword">new</span> complex&lt;<span class="type">float</span>&gt;[N];</span><br><span class="line">    complex&lt;<span class="type">float</span>&gt;* b = <span class="keyword">new</span> complex&lt;<span class="type">float</span>&gt;[N];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; L; ++i) &#123;</span><br><span class="line">        realA[i] = real[i] * table[i].<span class="built_in">real</span>() - imag[i] * table[i].<span class="built_in">imag</span>();</span><br><span class="line">        imagA[i] = imag[i] * table[i].<span class="built_in">real</span>() + real[i] * table[i].<span class="built_in">imag</span>();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; L * <span class="number">2</span> - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; L) &#123;</span><br><span class="line">            imagB[i] = -table[L - i - <span class="number">1</span>].<span class="built_in">imag</span>();</span><br><span class="line">            realB[i] = table[L - i - <span class="number">1</span>].<span class="built_in">real</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            imagB[i] = -table[i + <span class="number">1</span> - L].<span class="built_in">imag</span>();</span><br><span class="line">            realB[i] = table[i + <span class="number">1</span> - L].<span class="built_in">real</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 卷积</span></span><br><span class="line">    <span class="type">float</span>** conv = <span class="built_in">convolve</span>(realA, imagA, realB, imagB, N);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; L; ++i) &#123;</span><br><span class="line">        real[i] = conv[<span class="number">0</span>][i + L] * table[i].<span class="built_in">real</span>() - conv[<span class="number">1</span>][i + L] * table[i].<span class="built_in">imag</span>();</span><br><span class="line">        imag[i] = conv[<span class="number">1</span>][i + L] * table[i].<span class="built_in">real</span>() + conv[<span class="number">0</span>][i + L] * table[i].<span class="built_in">imag</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取Bluestein算法的三角函数表格</span></span><br><span class="line"><span class="function">complex&lt;<span class="type">float</span>&gt;* <span class="title">getBluesteinTable</span><span class="params">(<span class="type">unsigned</span> L, <span class="type">bool</span> inverse)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> fact = inverse ? <span class="number">1</span> : <span class="number">-1</span>;</span><br><span class="line">    complex&lt;<span class="type">float</span>&gt;* table = <span class="keyword">new</span> complex&lt;<span class="type">float</span>&gt;[L];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; L; ++i) &#123;</span><br><span class="line">        <span class="type">uintmax_t</span> temp = <span class="built_in">static_cast</span>&lt;<span class="type">uintmax_t</span>&gt;(i) * i;</span><br><span class="line">        temp %= <span class="built_in">static_cast</span>&lt;<span class="type">uintmax_t</span>&gt;(L) * <span class="number">2</span>;</span><br><span class="line">        <span class="type">double</span> angle = M_PI * temp / L * fact;</span><br><span class="line">        table[i].<span class="built_in">real</span>(<span class="built_in">cos</span>(angle));</span><br><span class="line">        table[i].<span class="built_in">imag</span>(<span class="built_in">sin</span>(angle));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> table;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用FFT实现卷积</span></span><br><span class="line"><span class="function"><span class="type">float</span>** <span class="title">convolve</span><span class="params">(<span class="type">float</span>* real1, <span class="type">float</span>* imag1, <span class="type">float</span>* real2, <span class="type">float</span>* imag2, <span class="type">unsigned</span> L)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">fft1dIterRadix2</span>(real1, imag1, L, <span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">fft1dIterRadix2</span>(real2, imag2, L, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">float</span>** dst = <span class="keyword">new</span> <span class="type">float</span>*[<span class="number">2</span>]();</span><br><span class="line">    dst[<span class="number">0</span>] = <span class="keyword">new</span> <span class="type">float</span>[L];</span><br><span class="line">    dst[<span class="number">1</span>] = <span class="keyword">new</span> <span class="type">float</span>[L];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; L; ++i) &#123;</span><br><span class="line">        dst[<span class="number">0</span>][i] = real1[i] * real2[i] - imag1[i] * imag2[i];</span><br><span class="line">        dst[<span class="number">1</span>][i] = imag1[i] * real2[i] + real1[i] * imag2[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">fft1dIterRadix2</span>(dst[<span class="number">0</span>], dst[<span class="number">1</span>], L, <span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; L; ++i) &#123;</span><br><span class="line">        dst[<span class="number">0</span>][i] /= L;</span><br><span class="line">        dst[<span class="number">1</span>][i] /= L;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dst;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-5-实际采用的FFT算法"><a href="#1-5-实际采用的FFT算法" class="headerlink" title="1.5 实际采用的FFT算法"></a>1.5 实际采用的FFT算法</h3><p>上面几种FFT算法中，算法性能大致是基2FFT&gt;CT&gt;Bluestein算法，所以实际使用时，根据序列的长度N设计如下算法：</p>
+<ul>
+<li>如果N是2的幂次，采用基2FFT算法</li>
+<li>否则如果N是2的倍数或5的倍数，采用一般形式的CT算法</li>
+<li>否则采用Bluestein算法</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">dft1d</span><span class="params">(<span class="type">float</span>* real, <span class="type">float</span>* imag, <span class="type">unsigned</span> L, <span class="type">bool</span> inverse)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//dft1dNaive(real, imag, L, inverse);</span></span><br><span class="line">    <span class="comment">//return;</span></span><br><span class="line">    <span class="keyword">if</span> (L == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ((L &amp; (L - <span class="number">1</span>)) == <span class="number">0</span>) &#123;                      <span class="comment">// 2的幂次的情形调用基2傅里叶变换</span></span><br><span class="line">        <span class="built_in">fft1dIterRadix2</span>(real, imag, L, inverse);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (L % <span class="number">5</span> == <span class="number">0</span> || L % <span class="number">3</span> == <span class="number">0</span> || L % <span class="number">2</span> == <span class="number">0</span>) &#123;   <span class="comment">// 如果是2或者3或者5的倍数，调用CooleyTukey算法</span></span><br><span class="line">            <span class="built_in">fft1dCooleyTukey</span>(real, imag, L, inverse);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;                                          <span class="comment">// 其他情形，调用BluesteinTable算法</span></span><br><span class="line">            <span class="type">long</span> tmp = inverse ? <span class="number">-1</span> * L : L;</span><br><span class="line">            <span class="keyword">if</span> (mem.<span class="built_in">count</span>(tmp) == <span class="number">0</span>) &#123;</span><br><span class="line">                mem[tmp] = <span class="built_in">getBluesteinTable</span>(L, inverse);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">fft1dBluestein</span>(real, imag, mem[tmp], L, inverse);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-离散余弦变换（DCT）"><a href="#2-离散余弦变换（DCT）" class="headerlink" title="2. 离散余弦变换（DCT）"></a>2. 离散余弦变换（DCT）</h2><p>二维离散余弦变换同样具备可分离性，因此只需要考虑如果优化一维DCT。</p>
+<p>实际上，一维DCT可以利用一维FFT实现。可以构造这样一个信号$g(x)$，它通过在原始信号$f(x)$的末尾补N个0得到。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+F(u)&=\alpha(u) \sum_{x=0}^{N-1} f(x) \cos \frac{(2 x+1) \pi u}{2 N}\\&=\alpha(u) \sum_{x=0}^{2 N-1} g(x) \cos \frac{(2 x+1) \pi u}{2 N}\\
+& =\alpha(u) \sum_{x=0}^{2 N-1} g(x) \operatorname{Real}\left(\exp -\frac{j(2 x+1) \pi u}{2 N}\right)\\
+&=\alpha(u) \operatorname{Real}\left(\sum_{x=0}^{2 N-1} g(x) \exp -\frac{j(2 x+1) \pi u}{2 N}\right) \\
+& =\alpha(u) \operatorname{Real}\left(\exp \frac{j \pi u}{2 N} \sum_{x=0}^{2 N-1} g(x) \exp -\frac{j 2 \pi u x}{2 N}\right)\\&
+=\alpha(u) \operatorname{Real}\left(\exp \frac{j \pi u}{2 N} F F T(g(x))\right)
+\end{aligned}</script><p>这样就可以利用FFT算法计算DCT。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 快速二维离散余弦变换</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">myfdct</span><span class="params">(Mat&amp; src, Mat&amp; dst, <span class="type">int</span> sx, <span class="type">int</span> sy)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Mat input = src.<span class="built_in">clone</span>();</span><br><span class="line">    <span class="built_in">pad</span>(input, sx, sy);</span><br><span class="line">    <span class="type">int</span> M = input.rows;</span><br><span class="line">    <span class="type">int</span> N = input.cols;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (src.<span class="built_in">type</span>() != <span class="number">5</span>) &#123;    <span class="comment">// CV_32F</span></span><br><span class="line">        <span class="keyword">throw</span> std::<span class="built_in">invalid_argument</span>(<span class="string">&quot;only CV_32F is accepted&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Mat res = <span class="built_in">Mat</span>(M, N, CV_32F, Scalar::<span class="built_in">all</span>(<span class="number">0</span>));</span><br><span class="line">    <span class="type">float</span>* ptr_res = (<span class="type">float</span>*)res.data;</span><br><span class="line">    <span class="comment">// 对行进行DCT</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; M; ++i) &#123;</span><br><span class="line">        <span class="built_in">dct1d</span>((<span class="type">float</span>*)src.<span class="built_in">ptr</span>(i), (<span class="type">float</span>*)res.<span class="built_in">ptr</span>(i), N);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 对列进行DCT</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; N; ++j) &#123;</span><br><span class="line">        <span class="type">float</span>* col = <span class="keyword">new</span> <span class="type">float</span>[M];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; M; ++i) &#123;</span><br><span class="line">            col[i] = *(ptr_res + N * i + j);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">float</span>* tmp = <span class="keyword">new</span> <span class="type">float</span>[M];</span><br><span class="line">        <span class="built_in">dct1d</span>(col, tmp, M);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; M; ++i) &#123;</span><br><span class="line">            *(ptr_res + N * i + j) = tmp[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    res.<span class="built_in">copyTo</span>(dst);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一维离散余弦逆变换</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dct1d</span><span class="params">(<span class="type">float</span>* src, <span class="type">float</span>* dst, <span class="type">int</span> N)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">dct1dNaive</span>(src, dst, N);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 基于FFT的一维DCT快速算法</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fdctfft1d</span><span class="params">(<span class="type">float</span>* src, <span class="type">float</span>* dst, <span class="type">int</span> N)</span> </span>&#123;</span><br><span class="line">    <span class="type">float</span>* imag = <span class="keyword">new</span> <span class="type">float</span>[<span class="number">2</span> * N];</span><br><span class="line">    <span class="type">float</span>* real = <span class="keyword">new</span> <span class="type">float</span>[<span class="number">2</span> * N];</span><br><span class="line">    <span class="built_in">memset</span>(imag, <span class="number">0</span>, N * <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">memset</span>(real, <span class="number">0</span>, N * <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        real[i] = src[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dft1d</span>(real, imag, N * <span class="number">2</span>, <span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        <span class="type">double</span> tmp = i * M_PI / (<span class="number">2</span> * N);</span><br><span class="line">        dst[i] = (real[i] * <span class="built_in">cos</span>(tmp) + imag[i] * <span class="built_in">sin</span>(tmp)) * <span class="built_in">c</span>(i, N);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-性能测试"><a href="#3-性能测试" class="headerlink" title="3.性能测试"></a>3.性能测试</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>图像尺寸</strong></th>
+<th><strong>opencv DFT+IDFT</strong></th>
+<th><strong>朴素</strong>DFT+IDFT</th>
+<th><strong>自编</strong>FFT+IFFT</th>
+<th><strong>opencv DCT+IDCT</strong></th>
+<th><strong>朴素</strong>DCT+IDCT</th>
+<th><strong>自编</strong>FDCT+IFDCT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>256×256  （2的幂次）</td>
+<td>0.97ms</td>
+<td>170514ms</td>
+<td>29.5ms</td>
+<td>0.46ms</td>
+<td>83422ms</td>
+<td>61ms</td>
+</tr>
+<tr>
+<td>257×257  （质数）</td>
+<td>3.65ms</td>
+<td>170916ms</td>
+<td>86.15ms</td>
+<td>2.29ms</td>
+<td>93993ms</td>
+<td>170ms</td>
+</tr>
+<tr>
+<td>240×240  （2,3,5的倍数）</td>
+<td>0.98ms</td>
+<td>133231ms</td>
+<td>32.87ms</td>
+<td>2.29ms</td>
+<td>81342ms</td>
+<td>73ms</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+      <div class="tags">
+          <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="ic i-tag"></i> 算法</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2024-04-20 15:07:37" itemprop="dateModified" datetime="2024-04-20T15:07:37+08:00">2024-04-20</time>
+  </span>
+  <span id="2024/04/20/DFT和DCT的快速算法实现/" class="item leancloud_visitors" data-flag-title="DFT 和 DCT 的快速算法实现" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>Foufor Past <i class="ic i-at"><em>@</em></i>FP 的一亩三分地
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://fouforpast.github.io/2024/04/20/DFT%E5%92%8CDCT%E7%9A%84%E5%BF%AB%E9%80%9F%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/" title="DFT 和 DCT 的快速算法实现">https://fouforpast.github.io/2024/04/20/DFT和DCT的快速算法实现/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2024/04/09/2023%E5%8D%8E%E4%B8%BA%E8%BD%AF%E4%BB%B6%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9B%E5%9B%9E%E9%A1%BE/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeuv80yoj20zk0m8kjl.jpg" title="2023华为软件精英挑战赛回顾">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>2023华为软件精英挑战赛回顾</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">1.</span> <span class="toc-text">1. 傅里叶变换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%9C%B4%E7%B4%A0%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 朴素傅里叶变换算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Cooley-Tukey%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 Cooley-Tukey算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%9F%BA2FFT%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 基2FFT算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-Bluestein%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 Bluestein算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E5%AE%9E%E9%99%85%E9%87%87%E7%94%A8%E7%9A%84FFT%E7%AE%97%E6%B3%95"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 实际采用的FFT算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%A6%BB%E6%95%A3%E4%BD%99%E5%BC%A6%E5%8F%98%E6%8D%A2%EF%BC%88DCT%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">2. 离散余弦变换（DCT）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">3.</span> <span class="toc-text">3.性能测试</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Foufor Past"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Foufor Past</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">25</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">2</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">19</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Foufor Past @ Foufor Past</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2024/04/20/DFT和DCT的快速算法实现/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>
