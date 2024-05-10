@@ -1,0 +1,407 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="FP的一亩三分地" href="https://fouforpast.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="FP的一亩三分地" href="https://fouforpast.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="FP的一亩三分地" href="https://fouforpast.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="刷题" />
+
+
+<link rel="canonical" href="https://fouforpast.github.io/2024/05/10/%E5%B0%8F%E7%BA%A2%E7%9A%84%E7%82%B9%E8%B5%9E%E8%B4%AA%E5%BF%83%E9%A2%98%E8%A7%A3/">
+
+
+
+  <title>
+小红的点赞贪心题解 |
+Foufor Past = FP 的一亩三分地</title>
+<meta name="generator" content="Hexo 7.0.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">小红的点赞贪心题解
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2024-05-10 21:12:10">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2024-05-10T21:12:10+08:00">2024-05-10</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Foufor Past</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicljgocqbj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipetfk5zwj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclxp31goj20zk0m8qv5.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipevgoki5j20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giciuja1j1j20zk0m8kjl.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicm0n457cj20zk0m8e81.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://fouforpast.github.io/2024/05/10/%E5%B0%8F%E7%BA%A2%E7%9A%84%E7%82%B9%E8%B5%9E%E8%B4%AA%E5%BF%83%E9%A2%98%E8%A7%A3/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Foufor Past">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="FP 的一亩三分地">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <span id="more"></span>
+<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>小红发布了n个笔记，每个笔记的点赞数为$a_i$。小红观察到，每隔一段时间，某个笔记的点赞数就会加1。但是不会出现一个笔记点赞数连续增加的情况。也就是说，一个笔记赞数加1后，下一个加1的必然是另一个笔记。</p>
+<p>现在小红想知道，对于每一个笔记，其赞数变成所有笔记赞数最多时，此时所有的笔记赞数之和的最小值是多少？</p>
+<p>输入描述： 第一行输入一个正整数n，代表笔记的数量。 第二行输入n个正整数$a_i$，代表每个笔记当前的赞数。 $1 ≤ n ≤ 10^5, 1 ≤ a_i ≤ 10^9$</p>
+<p>输出描述： 输出n行，每行输出一个整数，代表第i个笔记变成所有笔记赞数最多时，此时所有的笔记赞数之和的最小值。特殊的，如果第i个笔记永远无法变成赞数最多，则输出-1。</p>
+<p><strong>样例输入</strong>： </p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">1</span> <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<p><strong>样例输出</strong>： </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">9</span><br><span class="line">15</span><br><span class="line">8</span><br></pre></td></tr></table></figure>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>网上很多人对这道题都是二分做的，在此提供一种$O(n)$的贪心做法。</p>
+<p>设数组最大值是$mx$，数组的和是$sum$，长度是$n$。</p>
+<p>首先明确一点，对于$a[i]$来说，要想最终数组总和最小，肯定是$a[i]$增加1，其余数增加1，以此循环。那么对于$a[i]$来说，只要找出它的最终值就好了。如果找到了他的最终值$num$，答案即为</p>
+<script type="math/tex; mode=display">
+(num-a[i]-1)*2+1+sum</script><p>上面的公式仅适合于$a[i]\neq mx$的情况，$a[i]=mx$时直接输出$sum$。</p>
+<p>显而易见，$a[i]$的最终值一定大于等于$mx$。</p>
+<h5 id="a-i-最终值等于-mx"><a href="#a-i-最终值等于-mx" class="headerlink" title="$a[i]$最终值等于$mx$"></a>$a[i]$最终值等于$mx$</h5><p>这种情况的前提是$a[i]$增长到$mx$的增加次数小于等于其他所有数增长到$mx$的总增加次数，也就是</p>
+<script type="math/tex; mode=display">
+sum-(n-1)\times mx \geq mx-a[i]</script><p>这种情况的临界值就是$sum-(n-1)*mx = mx-a[i]$，此时刚好$a[i]$增加到$mx$时，其余所有数也都增长到了$mx$。</p>
+<h5 id="a-i-最终值大于-mx"><a href="#a-i-最终值大于-mx" class="headerlink" title="$a[i]$最终值大于$mx$"></a>$a[i]$最终值大于$mx$</h5><p>这种情况的前提是$a[i]$增长到$mx$的增加次数大于其他所有数增长到$mx$的总增加次数，此时我们以恰好其余所有数都增加到$mx$为起始状态开始思考，这个起始状态下，$a[i]$的值增加到了$a[i]+sum-(n-1)\times mx$，$a[i]$和其余数字最大值的差距为$relative=mx-(a[i]+sum-(n-1)\times mx)$</p>
+<p>我们以$(n-1)\times 2$次操作为一次循环，经过这$(n-1)\times 2$操作后，$a[i]$的值刚好增加$n-1$，其余所有数的值都刚好增加1，也就是说，$a[i]$和其余数最大值的差距缩小了$n-2$（类比物理里面的相对速度），既然每次循环二者差距缩小$n-2$，那么经过</p>
+<script type="math/tex; mode=display">
+cycle=ceil(relative/(n-2))=(relative+n-3)//(n-2)</script><p>次后，$a[i]$的值将第一次大于等于其余所有数的值，这也是$a[i]$的最终值。也就是说，经过$cycle-1$次循环后$a[i]$的值还小于其余所有数最大值，经过$cycle$次循环后$a[i]$的值就大于其余所有数最大值了。</p>
+<p>那么，其余数经过$cycle$次循环后，所有数字都等于$mx+cycle$，这就是$a[i]$的最终值。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">n = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">aa = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split()))</span><br><span class="line">s = <span class="built_in">sum</span>(aa)</span><br><span class="line">mx = <span class="built_in">max</span>(aa)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">    <span class="keyword">if</span> mx == aa[i]:</span><br><span class="line">        <span class="built_in">print</span>(s)</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    tmp1 = mx * (n - <span class="number">1</span>) - (s - aa[i])</span><br><span class="line">    <span class="keyword">if</span> tmp1 &lt; mx - aa[i] <span class="keyword">and</span> n &lt;= <span class="number">2</span>: <span class="comment"># 无解情况，永远追不上其他元素的最大值</span></span><br><span class="line">        <span class="built_in">print</span>(-<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">if</span> tmp1 &gt;= mx - aa[i]:  <span class="comment"># 最终值就是mx</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="number">2</span> * (mx - aa[i] - <span class="number">1</span>) + <span class="number">1</span> + s)</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="comment"># 最终值大于mx</span></span><br><span class="line">    rela = mx - (aa[i] + tmp1)</span><br><span class="line">    cycle = (rela + n - <span class="number">3</span>) // (n - <span class="number">2</span>)</span><br><span class="line">    final = mx + cycle</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">2</span> * (final - aa[i] - <span class="number">1</span>) + <span class="number">1</span> + s)</span><br></pre></td></tr></table></figure>
+
+      <div class="tags">
+          <a href="/tags/%E5%88%B7%E9%A2%98/" rel="tag"><i class="ic i-tag"></i> 刷题</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2024-05-10 22:23:50" itemprop="dateModified" datetime="2024-05-10T22:23:50+08:00">2024-05-10</time>
+  </span>
+  <span id="2024/05/10/小红的点赞贪心题解/" class="item leancloud_visitors" data-flag-title="小红的点赞贪心题解" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>Foufor Past <i class="ic i-at"><em>@</em></i>FP 的一亩三分地
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://fouforpast.github.io/2024/05/10/%E5%B0%8F%E7%BA%A2%E7%9A%84%E7%82%B9%E8%B5%9E%E8%B4%AA%E5%BF%83%E9%A2%98%E8%A7%A3/" title="小红的点赞贪心题解">https://fouforpast.github.io/2024/05/10/小红的点赞贪心题解/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2024/05/05/%E9%98%BF%E9%87%8C%E4%BA%91ecs%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99%E5%90%8E%E4%BB%8D%E7%84%B6%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE80%E7%AB%AF%E5%8F%A3%E5%8E%9F%E5%9B%A0%E6%8E%92%E6%9F%A5/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicis3attqj20zk0m8k7l.jpg" title="阿里云ecs关闭防火墙后仍然无法访问80端口原因排查">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>阿里云ecs关闭防火墙后仍然无法访问80端口原因排查</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">2.</span> <span class="toc-text">思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#a-i-%E6%9C%80%E7%BB%88%E5%80%BC%E7%AD%89%E4%BA%8E-mx"><span class="toc-number">2.1.</span> <span class="toc-text">$a[i]$最终值等于$mx$</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#a-i-%E6%9C%80%E7%BB%88%E5%80%BC%E5%A4%A7%E4%BA%8E-mx"><span class="toc-number">2.2.</span> <span class="toc-text">$a[i]$最终值大于$mx$</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">3.</span> <span class="toc-text">代码</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Foufor Past"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Foufor Past</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">27</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">2</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">21</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Foufor Past @ Foufor Past</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2024/05/10/小红的点赞贪心题解/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>
